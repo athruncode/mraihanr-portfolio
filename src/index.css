@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@theme {
+  /* ── Grey Blue ── */
+  --color-greyBlue-50: #f0f5f9;
+  --color-greyBlue-100: #d2e0ee;
+  --color-greyBlue-200: #bcd1e5;
+  --color-greyBlue-300: #9dbbd9;
+  --color-greyBlue-400: #8aaed2;
+  --color-greyBlue-500: #6d9ac7;
+  --color-greyBlue-600: #638cb5;
+  --color-greyBlue-700: #4d6d8d;
+  --color-greyBlue-800: #3c556d;
+  --color-greyBlue-900: #2e4154;
+
+  /* ── Custom Blue ── */
+  --color-customBlue-50: #e7f0fa;
+  --color-customBlue-100: #b6d1ef;
+  --color-customBlue-200: #92bae8;
+  --color-customBlue-300: #609bdd;
+  --color-customBlue-400: #4187d6;
+  --color-customBlue-500: #1269cc;
+  --color-customBlue-600: #1060ba;
+  --color-customBlue-700: #0d4b91;
+  --color-customBlue-800: #0a3a70;
+  --color-customBlue-900: #082c56;
+
+  /* ── Custom Cyan ── */
+  --color-customCyan-50: #eefdff;
+  --color-customCyan-100: #c9fafe;
+  --color-customCyan-200: #aff7fe;
+  --color-customCyan-300: #8af4fd;
+  --color-customCyan-400: #74f1fd;
+  --color-customCyan-500: #51eefc;
+  --color-customCyan-600: #4ad9e5;
+  --color-customCyan-700: #3aa9b3;
+  --color-customCyan-800: #2d838b;
+  --color-customCyan-900: #22646a;
+
+  /* ── Custom White ── */
+  --color-customWhite-50: #ffffff;
+  --color-customWhite-500: #ffffff;
+  --color-customWhite-600: #e8e8e8;
+  --color-customWhite-700: #b5b5b5;
+  --color-customWhite-800: #8c8c8c;
+  --color-customWhite-900: #6b6b6b;
+
+  /* ── Dark Black ── */
+  --color-darkBlack-50: #eaeaea;
+  --color-darkBlack-100: #bfbfbf;
+  --color-darkBlack-200: #a0a0a0;
+  --color-darkBlack-300: #747474;
+  --color-darkBlack-400: #595959;
+  --color-darkBlack-500: #303030;
+  --color-darkBlack-600: #2c2c2c;
+  --color-darkBlack-700: #222222;
+  --color-darkBlack-800: #1a1a1a;
+  --color-darkBlack-900: #141414;
+
+  --font-oswald: 'Oswald', sans-serif;
+}
+
+/* ── Reset ── */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a1628;
+  font-family: var(--font-oswald);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── Menu hover parallelogram ── */
+.menu-skew-block {
+  clip-path: polygon(6% 0%, 100% 0%, 94% 100%, 0% 100%);
+}
