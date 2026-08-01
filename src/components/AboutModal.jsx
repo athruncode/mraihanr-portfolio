@@ -86,18 +86,17 @@ export default function AboutModal({ isOpen, onClose }) {
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-5xl md:h-[450px] relative flex shadow-2xl overflow-hidden select-none"
+            className="w-full max-w-5xl h-[85vh] md:h-[450px] relative flex flex-col md:block shadow-2xl overflow-hidden select-none"
             style={{
               background: '#020b24',
-              aspectRatio: window.innerWidth < 768 ? 'auto' : '21/9',
             }}
           >
 
             {/* ── LEFT ACCENT BLOCK (blue skewed) ────────────────── */}
             <div
-              className="absolute top-0 left-0 h-full w-[38%] bg-customBlue-500 z-0"
+              className="absolute md:absolute top-0 left-0 w-full md:w-[38%] h-[35%] md:h-full bg-customBlue-500 z-0"
               style={{
-                clipPath: 'polygon(0 0, 100% 0, 82% 100%, 0 100%)',
+                clipPath: window.innerWidth < 768 ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' : 'polygon(0 0, 100% 0, 82% 100%, 0 100%)',
               }}
             />
 
@@ -109,8 +108,8 @@ export default function AboutModal({ isOpen, onClose }) {
               initial={{ y: 60, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 250, damping: 20, delay: 0.15 }}
-              className="absolute bottom-0 left-2 h-[95%] w-auto object-contain
-                         drop-shadow-xl z-[5] pointer-events-none"
+              className="absolute top-0 md:bottom-0 left-2 md:left-2 h-[35%] md:h-[95%] w-auto object-contain
+                         drop-shadow-xl z-[5] pointer-events-none opacity-50 md:opacity-100"
               style={{
                 filter: 'drop-shadow(0 0 20px rgba(18, 105, 204, 0.4))',
               }}
@@ -118,12 +117,12 @@ export default function AboutModal({ isOpen, onClose }) {
 
             {/* ── PHOTO inside white geometric frame ──────────── */}
             <div
-              className="absolute top-0 left-0 w-[38%] h-full z-[15] pointer-events-none"
+              className="absolute top-0 left-0 w-full md:w-[38%] h-[35%] md:h-full z-[15] pointer-events-none flex justify-center md:block"
             >
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 md:inset-0 w-[60%] md:w-full mx-auto md:mx-0 h-full"
                 style={{
-                  clipPath: 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
+                  clipPath: window.innerWidth < 768 ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
                   background: 'white',
                   padding: '3px',
                 }}
@@ -137,7 +136,7 @@ export default function AboutModal({ isOpen, onClose }) {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="w-full h-full object-cover"
                   style={{
-                    clipPath: 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
+                    clipPath: window.innerWidth < 768 ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
                   }}
                 />
               </div>
@@ -182,11 +181,12 @@ export default function AboutModal({ isOpen, onClose }) {
 
             {/* ── CONTENT AREA (right side, paginated) ─────────── */}
             <div
-              className="absolute right-0 top-0 h-full flex flex-col justify-center z-20"
+              className="relative md:absolute md:right-0 mt-[35vh] md:mt-0 h-[65%] md:h-full flex flex-col justify-start md:justify-center z-20 overflow-y-auto overflow-x-hidden md:overflow-visible pb-16 md:pb-0 scrollbar-hide"
               style={{
-                width: '55%',
-                paddingLeft: '40px',
-                paddingRight: '48px',
+                width: window.innerWidth < 768 ? '100%' : '55%',
+                paddingLeft: window.innerWidth < 768 ? '20px' : '40px',
+                paddingRight: window.innerWidth < 768 ? '20px' : '48px',
+                paddingTop: window.innerWidth < 768 ? '20px' : '0px',
               }}
             >
               <AnimatePresence mode="wait">

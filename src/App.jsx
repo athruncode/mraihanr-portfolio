@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AboutModal from './components/AboutModal';
-
+import ExperienceModal from './components/ExperienceModal';
 /* ───────────────────────── MENU DATA ───────────────────────── */
 const menuItems = ['ABOUT', 'EXPERIENCE', 'PROJECTS', 'ACHIEVEMENT', 'SKILL', 'CONTACT'];
 
@@ -26,6 +26,7 @@ const menuItemVariants = {
 export default function App() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [experienceOpen, setExperienceOpen] = useState(false);
 
   /* ── Mouse parallax tracking ──────────────────────────────── */
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -128,7 +129,10 @@ export default function App() {
             className="relative cursor-pointer"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => { if (item === 'ABOUT') setAboutOpen(true); }}
+            onClick={() => { 
+              if (item === 'ABOUT') setAboutOpen(true); 
+              if (item === 'EXPERIENCE') setExperienceOpen(true);
+            }}
           >
             {/* Blue skewed block behind text on hover */}
             <AnimatePresence>
@@ -172,6 +176,9 @@ export default function App() {
 
       {/* ── Z-50 · ABOUT MODAL ──────────────────────────────── */}
       <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
+
+      {/* ── Z-50 · EXPERIENCE MODAL ─────────────────────────── */}
+      <ExperienceModal isOpen={experienceOpen} onClose={() => setExperienceOpen(false)} />
     </div>
   );
 }
