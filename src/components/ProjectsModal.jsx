@@ -114,12 +114,27 @@ export default function ProjectsModal({ isOpen, onClose }) {
         className="fixed inset-0 w-screen h-screen z-50 bg-[#050b1a] select-none overflow-hidden font-oswald"
       >
         {/* ── BACKGROUND ────────────────────────────────────────── */}
-        <div className="absolute inset-0 bg-[#000820] opacity-80 mix-blend-multiply pointer-events-none z-0" />
-        <img 
-            src="/Home Background.png" 
-            alt="Background Texture" 
-            className="absolute inset-0 w-full h-full object-cover z-0 opacity-20 mix-blend-screen pointer-events-none"
-        />
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[#000820] opacity-80 mix-blend-multiply pointer-events-none" />
+          <img 
+              src="/Home Background.png" 
+              alt="Background Texture" 
+              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen pointer-events-none"
+          />
+          {/* Floating glass triangles */}
+          <motion.div 
+            animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+            className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10"
+            style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+          />
+          <motion.div 
+            animate={{ y: [20, -20, 20], rotate: [0, -15, 0] }}
+            transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+            className="absolute top-[60%] left-[20%] w-48 h-48 bg-cyan-500/10"
+            style={{ clipPath: 'polygon(0 40%, 100% 0, 80% 100%)' }}
+          />
+        </div>
 
         {/* ── TOP BANNER (z-20) ─────────────────────────────────── */}
         <div 

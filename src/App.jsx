@@ -3,8 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AboutModal from './components/AboutModal';
 import ExperienceModal from './components/ExperienceModal';
 import ProjectsModal from './components/ProjectsModal';
+import AchievementModal from './components/AchievementModal';
+import SkillModal from './components/SkillModal';
+import ContactModal from './components/ContactModal';
 /* ───────────────────────── MENU DATA ───────────────────────── */
-const menuItems = ['ABOUT', 'EXPERIENCE', 'PROJECTS', 'ACHIEVEMENT', 'SKILL', 'CONTACT'];
+const menuItems = ['ABOUT', 'EXPERIENCES', 'PROJECTS', 'ACHIEVEMENTS', 'SKILLS', 'CONTACT'];
 
 /* ───────────────────────── ANIMATION VARIANTS ───────────────────────── */
 const menuContainerVariants = {
@@ -29,6 +32,9 @@ export default function App() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [experienceOpen, setExperienceOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [achievementOpen, setAchievementOpen] = useState(false);
+  const [skillOpen, setSkillOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   /* ── Mouse parallax tracking ──────────────────────────────── */
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -133,8 +139,11 @@ export default function App() {
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => { 
               if (item === 'ABOUT') setAboutOpen(true); 
-              if (item === 'EXPERIENCE') setExperienceOpen(true);
+              if (item === 'EXPERIENCES') setExperienceOpen(true);
               if (item === 'PROJECTS') setProjectsOpen(true);
+              if (item === 'ACHIEVEMENTS') setAchievementOpen(true);
+              if (item === 'SKILLS') setSkillOpen(true);
+              if (item === 'CONTACT') setContactOpen(true);
             }}
           >
             {/* Blue skewed block behind text on hover */}
@@ -185,6 +194,15 @@ export default function App() {
 
       {/* ── Z-50 · PROJECTS MODAL ───────────────────────────── */}
       <ProjectsModal isOpen={projectsOpen} onClose={() => setProjectsOpen(false)} />
+
+      {/* ── Z-50 · ACHIEVEMENT MODAL ────────────────────────── */}
+      <AchievementModal isOpen={achievementOpen} onClose={() => setAchievementOpen(false)} />
+
+      {/* ── Z-50 · SKILL MODAL ──────────────────────────────── */}
+      <SkillModal isOpen={skillOpen} onClose={() => setSkillOpen(false)} />
+
+      {/* ── Z-50 · CONTACT MODAL ────────────────────────────── */}
+      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }

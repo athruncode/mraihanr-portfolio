@@ -104,12 +104,27 @@ export default function ExperienceModal({ isOpen, onClose }) {
           className="fixed inset-0 w-screen h-screen z-50 bg-[#051336] select-none overflow-hidden"
         >
           {/* ── BACKGROUND LAYER (z-0) ────────────────────────── */}
-          <img
-            src="/Home Background.png"
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-screen"
-            draggable={false}
-          />
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img
+              src="/Home Background.png"
+              alt="Background"
+              className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
+              draggable={false}
+            />
+            {/* Floating glass triangles */}
+            <motion.div 
+              animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+              className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10"
+              style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+            />
+            <motion.div 
+              animate={{ y: [20, -20, 20], rotate: [0, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+              className="absolute top-[60%] left-[20%] w-48 h-48 bg-cyan-500/10"
+              style={{ clipPath: 'polygon(0 40%, 100% 0, 80% 100%)' }}
+            />
+          </div>
 
           {/* ── WATERMARK TEXT ────────────────────────────────── */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex justify-end items-start">
@@ -129,138 +144,138 @@ export default function ExperienceModal({ isOpen, onClose }) {
                 animate="visible"
                 className="w-[85vw] max-w-5xl flex flex-col gap-1 z-10 relative mt-12"
               >
-            {experiences.map((exp) => {
-              const isExpanded = expandedId === exp.id;
+                {experiences.map((exp) => {
+                  const isExpanded = expandedId === exp.id;
 
-              return (
-                <motion.div
-                  key={exp.id}
-                  variants={slotVariants}
-                  onClick={() => setExpandedId(isExpanded ? null : exp.id)}
-                  className={`
+                  return (
+                    <motion.div
+                      key={exp.id}
+                      variants={slotVariants}
+                      onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+                      className={`
                     w-full flex flex-col relative overflow-hidden transition-all duration-300 font-oswald cursor-pointer group
                     ${isExpanded
-                      ? 'bg-customBlue-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20'
-                      : 'bg-[#101b4d] hover:bg-customBlue-500 hover:-translate-x-2 z-10'}
+                          ? 'bg-customBlue-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20'
+                          : 'bg-[#101b4d] hover:bg-customBlue-500 hover:-translate-x-2 z-10'}
                   `}
-                  style={{
-                    transform: isExpanded ? 'translateX(-16px)' : '',
-                  }}
-                >
+                      style={{
+                        transform: isExpanded ? 'translateX(-16px)' : '',
+                      }}
+                    >
 
-                  {/* Slot Header Area */}
-                  <div className={`w-full flex relative transition-all duration-300 min-h-[5rem] md:min-h-0 ${isExpanded ? 'md:h-32 py-3 md:py-0' : 'md:h-24 py-3 md:py-0'}`}>
-                    {/* Expanded State Decorators */}
-                    {isExpanded && (
-                      <>
-                        {/* Pink accent line at the top */}
-                        <div className="absolute top-0 left-0 w-full h-[6px] bg-pink-400 z-10" />
-                        {/* White angled wedge top-left */}
-                        <div
-                          className="absolute top-0 left-0 w-16 h-16 bg-white z-20"
-                          style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
-                        />
-                        {/* The number inside the wedge */}
-                        <span className="absolute top-1 left-2 z-30 font-bold italic text-customBlue-600 text-2xl leading-none">
-                          {exp.id + 1}
-                        </span>
-                      </>
-                    )}
-
-                    {/* Content Container */}
-                    <div className="flex-1 flex flex-col md:flex-row md:items-center justify-center md:justify-between px-4 md:px-6 z-30 relative w-full h-full gap-2 md:gap-0">
-                      
-                      {/* Top Row on Mobile / Left+Middle on Desktop */}
-                      <div className="flex items-start md:items-center w-full md:w-auto">
-                        {/* Left: Number (Inactive) */}
-                        {!isExpanded && (
-                          <div className="w-8 md:w-12 text-2xl md:text-4xl font-bold italic text-customBlue-200 opacity-50 group-hover:text-white group-hover:opacity-100 transition-colors mt-0 md:mt-0">
-                            {exp.id + 1}
-                          </div>
-                        )}
+                      {/* Slot Header Area */}
+                      <div className={`w-full flex relative transition-all duration-300 min-h-[5rem] md:min-h-0 ${isExpanded ? 'md:h-32 py-3 md:py-0' : 'md:h-24 py-3 md:py-0'}`}>
+                        {/* Expanded State Decorators */}
                         {isExpanded && (
-                          <div className="w-8 md:w-12" /> // spacer for the active wedge number
+                          <>
+                            {/* Pink accent line at the top */}
+                            <div className="absolute top-0 left-0 w-full h-[6px] bg-pink-400 z-10" />
+                            {/* White angled wedge top-left */}
+                            <div
+                              className="absolute top-0 left-0 w-16 h-16 bg-white z-20"
+                              style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+                            />
+                            {/* The number inside the wedge */}
+                            <span className="absolute top-1 left-2 z-30 font-bold italic text-customBlue-600 text-2xl leading-none">
+                              {exp.id + 1}
+                            </span>
+                          </>
                         )}
 
-                        {/* Middle: Role & Company */}
-                        <div className={`flex-1 flex flex-col justify-center ml-2 md:ml-6 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-100 group-hover:text-white'}`}>
-                          {isExpanded ? (
-                            <div className="flex flex-col items-start gap-1">
-                              <div className="bg-darkBlack-900 text-white px-2 py-1 md:px-3 md:py-1 font-bold tracking-widest uppercase text-[0.65rem] md:text-sm inline-block shadow-md">
-                                {exp.company}
+                        {/* Content Container */}
+                        <div className="flex-1 flex flex-col md:flex-row md:items-center justify-center md:justify-between px-4 md:px-6 z-30 relative w-full h-full gap-2 md:gap-0">
+
+                          {/* Top Row on Mobile / Left+Middle on Desktop */}
+                          <div className="flex items-start md:items-center w-full md:w-auto">
+                            {/* Left: Number (Inactive) */}
+                            {!isExpanded && (
+                              <div className="w-8 md:w-12 text-2xl md:text-4xl font-bold italic text-customBlue-200 opacity-50 group-hover:text-white group-hover:opacity-100 transition-colors mt-0 md:mt-0">
+                                {exp.id + 1}
                               </div>
-                              <h3 className="text-xl md:text-4xl font-bold tracking-wide italic leading-tight md:leading-none mt-1">
-                                {exp.role}
-                              </h3>
+                            )}
+                            {isExpanded && (
+                              <div className="w-8 md:w-12" /> // spacer for the active wedge number
+                            )}
+
+                            {/* Middle: Role & Company */}
+                            <div className={`flex-1 flex flex-col justify-center ml-2 md:ml-6 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-100 group-hover:text-white'}`}>
+                              {isExpanded ? (
+                                <div className="flex flex-col items-start gap-1">
+                                  <div className="bg-darkBlack-900 text-white px-2 py-1 md:px-3 md:py-1 font-bold tracking-widest uppercase text-[0.65rem] md:text-sm inline-block shadow-md">
+                                    {exp.company}
+                                  </div>
+                                  <h3 className="text-xl md:text-4xl font-bold tracking-wide italic leading-tight md:leading-none mt-1">
+                                    {exp.role}
+                                  </h3>
+                                </div>
+                              ) : (
+                                <div className="flex flex-col justify-center">
+                                  <h3 className="text-lg md:text-2xl font-bold tracking-wide italic leading-tight md:leading-none">
+                                    {exp.role}
+                                  </h3>
+                                  <p className="text-[0.7rem] md:text-sm tracking-widest uppercase text-customBlue-300 font-medium group-hover:text-white/80 transition-colors mt-0 md:mt-0">
+                                    {exp.company}
+                                  </p>
+                                </div>
+                              )}
                             </div>
-                          ) : (
-                            <div className="flex flex-col justify-center">
-                              <h3 className="text-lg md:text-2xl font-bold tracking-wide italic leading-tight md:leading-none">
-                                {exp.role}
-                              </h3>
-                              <p className="text-[0.7rem] md:text-sm tracking-widest uppercase text-customBlue-300 font-medium group-hover:text-white/80 transition-colors mt-0 md:mt-0">
-                                {exp.company}
-                              </p>
-                            </div>
-                          )}
+                          </div>
+
+                          {/* Right: Date & Type */}
+                          <div className={`flex flex-col items-start md:items-end text-left md:text-right ml-10 md:ml-0 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-200 group-hover:text-white'}`}>
+                            <p className={`${isExpanded ? 'text-lg md:text-3xl drop-shadow-md' : 'text-base md:text-xl'} font-bold tracking-wider italic`}>
+                              {exp.date}
+                            </p>
+                            <p className={`text-[0.65rem] md:text-sm tracking-widest uppercase mt-0 md:mt-1 transition-colors ${isExpanded ? 'text-white/90 font-medium' : 'text-customBlue-400 group-hover:text-white/80'}`}>
+                              {exp.type}
+                            </p>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Right: Date & Type */}
-                      <div className={`flex flex-col items-start md:items-end text-left md:text-right ml-10 md:ml-0 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-200 group-hover:text-white'}`}>
-                        <p className={`${isExpanded ? 'text-lg md:text-3xl drop-shadow-md' : 'text-base md:text-xl'} font-bold tracking-wider italic`}>
-                          {exp.date}
-                        </p>
-                        <p className={`text-[0.65rem] md:text-sm tracking-widest uppercase mt-0 md:mt-1 transition-colors ${isExpanded ? 'text-white/90 font-medium' : 'text-customBlue-400 group-hover:text-white/80'}`}>
-                          {exp.type}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Accordion Content Area (Details) */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden bg-[#0a1130] w-full"
-                      >
-                        <div className="px-16 py-6 md:px-24 md:py-8">
-                          <ul className="border-l-2 border-pink-500 pl-6 space-y-3">
-                            {exp.details.map((point, idx) => (
-                              <li key={idx} className="text-white/90 text-sm md:text-base font-sans tracking-wide leading-relaxed list-disc list-inside marker:text-customBlue-400">
-                                <span className="-ml-2">{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-
-                          {/* Image Gallery */}
-                          {exp.images && exp.images.length > 0 && (
-                            <div className="mt-6 pt-6 border-t border-white/10">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {exp.images.map((imgSrc, imgIdx) => (
-                                  <img
-                                    key={imgIdx}
-                                    src={imgSrc}
-                                    alt={`${exp.company} Documentation ${imgIdx + 1}`}
-                                    className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md"
-                                    draggable={false}
-                                  />
+                      {/* Accordion Content Area (Details) */}
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="overflow-hidden bg-[#0a1130] w-full"
+                          >
+                            <div className="px-16 py-6 md:px-24 md:py-8">
+                              <ul className="border-l-2 border-pink-500 pl-6 space-y-3">
+                                {exp.details.map((point, idx) => (
+                                  <li key={idx} className="text-white/90 text-sm md:text-base font-sans tracking-wide leading-relaxed list-disc list-inside marker:text-customBlue-400">
+                                    <span className="-ml-2">{point}</span>
+                                  </li>
                                 ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                              </ul>
 
-                </motion.div>
-              );
-            })}
+                              {/* Image Gallery */}
+                              {exp.images && exp.images.length > 0 && (
+                                <div className="mt-6 pt-6 border-t border-white/10">
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {exp.images.map((imgSrc, imgIdx) => (
+                                      <img
+                                        key={imgIdx}
+                                        src={imgSrc}
+                                        alt={`${exp.company} Documentation ${imgIdx + 1}`}
+                                        className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md"
+                                        draggable={false}
+                                      />
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                    </motion.div>
+                  );
+                })}
               </motion.div>
             </div>
           </div>
