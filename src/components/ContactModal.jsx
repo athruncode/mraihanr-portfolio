@@ -206,9 +206,9 @@ export default function ContactModal({ isOpen, onClose }) {
             </div>
           </motion.div>
 
-          {/* ── ESC BACK BUTTON (z-20) ──────────────────────────── */}
-          <div
-            className="absolute bottom-6 right-6 z-20 flex items-center gap-2 cursor-pointer group"
+          {/* ── ESC BACK BUTTON (z-50) ──────────────────────────── */}
+          <div 
+            className="absolute top-6 left-6 md:top-10 md:left-10 z-50 flex items-center gap-2 md:gap-3 cursor-pointer group bg-black/20 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all hover:bg-black/40 md:hover:bg-transparent"
             onClick={onClose}
           >
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/30 flex items-center justify-center

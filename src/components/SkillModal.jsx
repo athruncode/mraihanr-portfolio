@@ -183,7 +183,7 @@ export default function SkillModal({ isOpen, onClose }) {
 
           {/* ── ESC BACK BUTTON ─────────────────────────────────── */}
           <div 
-            className="absolute bottom-6 right-6 z-50 flex items-center gap-2 cursor-pointer group"
+            className="absolute top-6 left-6 md:top-8 md:left-10 z-50 flex items-center gap-2 cursor-pointer group bg-white/40 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-black/10 md:border-transparent transition-all hover:bg-white/60 md:hover:bg-transparent"
             onClick={onClose}
           >
             <div className="w-8 h-8 rounded-full border-2 border-black/20 flex items-center justify-center
@@ -192,8 +192,8 @@ export default function SkillModal({ isOpen, onClose }) {
                 ESC
               </span>
             </div>
-            <span className="text-black font-bold italic tracking-wider group-hover:text-[#ff0050] transition-colors">
-              Back
+            <span className="text-black font-bold italic tracking-wider group-hover:text-[#ff0050] transition-colors uppercase">
+              BACK
             </span>
           </div>
         </motion.div>

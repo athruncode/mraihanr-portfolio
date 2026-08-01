@@ -212,26 +212,27 @@ export default function AchievementModal({ isOpen, onClose }) {
           </AnimatePresence>
         </div>
 
-        {/* ── ESC BACK BUTTON (bottom-right) ────────────────────── */}
+        {/* ── ESC BACK BUTTON (top-left) ────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 25 }}
-          className="absolute bottom-6 md:bottom-8 right-6 md:right-12 z-30"
+          className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
         >
-          <button
+          <div
             onClick={handleClose}
             className="flex items-center gap-2 md:gap-3 group cursor-pointer"
           >
-            <div className="px-3 h-10 md:h-12 rounded-full border-2 border-white flex items-center justify-center bg-transparent group-hover:bg-white transition-colors duration-200">
-              <span className="font-oswald font-bold text-lg md:text-xl text-white group-hover:text-[#003eb3] transition-colors duration-200 mt-1">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/30 flex items-center justify-center
+                            group-hover:border-[#ff0050] group-hover:bg-[#ff0050] transition-colors bg-black/40 md:bg-black/20">
+              <span className="text-white font-bold text-[10px] md:text-xs group-hover:text-white transition-colors">
                 ESC
               </span>
             </div>
-            <span className="font-oswald font-bold italic text-2xl md:text-3xl tracking-widest text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all">
-              Back
+            <span className="text-white font-bold italic tracking-widest text-sm md:text-base group-hover:text-[#ff0050] transition-colors drop-shadow-md uppercase">
+              BACK
             </span>
-          </button>
+          </div>
         </motion.div>
 
       </motion.div>
