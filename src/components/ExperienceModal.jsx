@@ -74,6 +74,7 @@ const slotVariants = {
 
 export default function ExperienceModal({ isOpen, onClose }) {
   const [expandedId, setExpandedId] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   // Close when reopening
   const handleClose = () => {
@@ -261,8 +262,9 @@ export default function ExperienceModal({ isOpen, onClose }) {
                                         key={imgIdx}
                                         src={imgSrc}
                                         alt={`${exp.company} Documentation ${imgIdx + 1}`}
-                                        className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale-0 md:grayscale md:hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md"
+                                        className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale-0 md:grayscale md:hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md cursor-pointer"
                                         draggable={false}
+                                        onClick={() => setSelectedImage(imgSrc)}
                                       />
                                     ))}
                                   </div>
@@ -302,6 +304,38 @@ export default function ExperienceModal({ isOpen, onClose }) {
             </span>
           </div>
           </motion.div>
+          {/* ── IMAGE LIGHTBOX OVERLAY ──────────────────────────── */}
+          <AnimatePresence>
+            {selectedImage && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedImage(null)}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 cursor-pointer"
+              >
+                <motion.img
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  src={selectedImage}
+                  alt="Enlarged documentation"
+                  className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                />
+                
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-6 right-6 md:top-10 md:right-10 w-10 h-10 bg-white/10 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors border border-white/20"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </motion.div>
       )}
