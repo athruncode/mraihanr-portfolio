@@ -61,14 +61,14 @@ export default function ContactModal({ isOpen, onClose }) {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 w-screen h-screen z-50 bg-[#020617] select-none font-oswald overflow-hidden"
+          className="fixed inset-0 w-screen h-screen z-50 bg-[#020617]/95 md:bg-[#020617] select-none font-oswald overflow-hidden"
         >
           {/* ── GLOBAL BACKGROUND & TEXTURE (z-0) ───────────────────────────── */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <img
               src="/Home Background.png"
               alt="Texture"
-              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen"
+              className="absolute inset-0 w-full h-full object-cover opacity-10 md:opacity-20 mix-blend-normal md:mix-blend-screen"
             />
             <motion.div
               animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
@@ -189,17 +189,17 @@ export default function ContactModal({ isOpen, onClose }) {
               {/* Shadow Layer */}
               <motion.img
                 initial={{ opacity: 0, scale: 1.1, x: 20 }}
-                animate={{ opacity: 0.3, scale: 1, x: 0, transition: { delay: 0.4, duration: 0.6 } }}
+                animate={{ opacity: 0.2, scale: 1, x: 0, transition: { delay: 0.4, duration: 0.6 } }}
                 src="/rehan blue sedikit.svg"
-                className="absolute right-[-10vw] md:right-0 bottom-[-5vh] md:bottom-0 h-[70%] md:h-[95%] object-contain object-bottom mix-blend-multiply pointer-events-none translate-x-10 translate-y-10 filter blur-sm"
+                className="absolute right-[-10vw] md:right-0 bottom-[-5vh] md:bottom-0 h-[70%] md:h-[95%] object-contain object-bottom mix-blend-normal md:mix-blend-multiply pointer-events-none translate-x-10 translate-y-10 filter-none md:filter md:blur-sm"
                 alt="Portrait Shadow"
               />
               {/* Main Portrait */}
               <motion.img
                 initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 0.9, scale: 1, transition: { delay: 0.3, duration: 0.5 } }}
+                animate={{ opacity: 1, scale: 1, transition: { delay: 0.3, duration: 0.5 } }}
                 src="/rehan blue sedikit.svg"
-                className="absolute right-[-10vw] md:right-0 bottom-[-5vh] md:bottom-0 h-[70%] md:h-[95%] object-contain object-bottom mix-blend-color-burn opacity-90 pointer-events-none drop-shadow-2xl"
+                className="absolute right-[-10vw] md:right-0 bottom-[-5vh] md:bottom-0 h-[70%] md:h-[95%] object-contain object-bottom mix-blend-normal md:mix-blend-color-burn opacity-100 md:opacity-90 pointer-events-none drop-shadow-md md:drop-shadow-2xl"
                 alt="Portrait"
               />
 

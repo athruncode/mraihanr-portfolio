@@ -77,11 +77,11 @@ export default function AboutModal({ isOpen, onClose }) {
           animate="visible"
           exit="exit"
           onClick={handleClose}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617]/80 backdrop-blur-md overflow-hidden p-4 gap-4"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617]/95 md:bg-[#020617]/80 backdrop-blur-none md:backdrop-blur-md overflow-hidden p-4 gap-4"
         >
           {/* ── TEXTURE OVERLAY ────────────────────────────────────── */}
           <div 
-            className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-40" 
+            className="absolute inset-0 pointer-events-none mix-blend-normal md:mix-blend-overlay opacity-10 md:opacity-40" 
             style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '4px 4px' }}
           ></div>
 

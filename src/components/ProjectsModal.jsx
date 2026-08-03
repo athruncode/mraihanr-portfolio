@@ -113,14 +113,20 @@ export default function ProjectsModal({ isOpen, onClose }) {
         onTouchEnd={handleTouchEnd}
         className="fixed inset-0 w-screen h-screen z-50 bg-[#050b1a] select-none overflow-hidden font-oswald"
       >
-        {/* ── BACKGROUND ────────────────────────────────────────── */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[#000820] opacity-80 mix-blend-multiply pointer-events-none" />
-          <img 
-              src="/Home Background.png" 
-              alt="Background Texture" 
-              className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen pointer-events-none"
-          />
+        {/* ── BACKGROUND LAYER (z-0) ───────────────────────────── */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 bg-[#000820] opacity-80 mix-blend-normal md:mix-blend-multiply pointer-events-none" />
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute inset-0"
+          >
+            <img
+              src="/Home Background.png"
+              alt="Texture"
+              className="absolute inset-0 w-full h-full object-cover opacity-10 md:opacity-20 mix-blend-normal md:mix-blend-screen pointer-events-none"
+            />
+          </motion.div>
           {/* Floating glass triangles */}
           <motion.div 
             animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
@@ -196,7 +202,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-lg border-l-4 border-customCyan-500 shadow-xl"
+                className="bg-black/40 md:bg-black/20 backdrop-blur-none md:backdrop-blur-sm p-4 md:p-6 rounded-lg border-l-4 border-customCyan-500 shadow-xl"
               >
                 <ul className="text-white font-sans text-base md:text-xl leading-relaxed mb-4 md:mb-6 list-disc list-outside pl-5 marker:text-customCyan-400 space-y-2">
                   {project.desc.map((point, i) => (
@@ -271,7 +277,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 25 }}
-          className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
+          className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/40 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
         >
           <div
             onClick={handleClose}

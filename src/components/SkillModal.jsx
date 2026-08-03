@@ -48,9 +48,13 @@ export default function SkillModal({ isOpen, onClose }) {
           className="fixed inset-0 w-screen h-screen z-50 bg-[#02102e] select-none font-oswald overflow-hidden"
         >
           {/* ── BACKGROUND LAYER ─────────────────────────────────── */}
-          <div className="absolute inset-0 z-0">
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply" />
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 bg-blue-900/20 mix-blend-normal md:mix-blend-multiply pointer-events-none" />
+            <img 
+              src="/Home Background.png" 
+              alt="Skills Background" 
+              className="absolute inset-0 w-full h-full object-cover z-0 opacity-10 md:opacity-20 mix-blend-normal md:mix-blend-overlay pointer-events-none"
+            />
             
             {/* Floating glass triangles */}
             <motion.div 
@@ -71,7 +75,7 @@ export default function SkillModal({ isOpen, onClose }) {
           <img 
             src="/rehan biru.svg" 
             alt="Character Portrait"
-            className="absolute -right-[10%] md:right-[5%] bottom-[15%] h-[60vh] md:h-[90vh] object-contain rotate-[15deg] z-10 pointer-events-none drop-shadow-[0_20px_50px_rgba(0,180,255,0.4)]"
+            className="absolute -right-[10%] md:right-[5%] bottom-[15%] h-[60vh] md:h-[90vh] object-contain rotate-[15deg] z-10 pointer-events-none drop-shadow-none md:drop-shadow-[0_20px_50px_rgba(0,180,255,0.4)]"
           />
 
           {/* ── BOTTOM WATERMARK & FRAME (z-20) ──────────────────── */}
@@ -183,7 +187,7 @@ export default function SkillModal({ isOpen, onClose }) {
 
           {/* ── ESC BACK BUTTON ─────────────────────────────────── */}
           <div 
-            className="absolute top-6 left-6 md:top-8 md:left-10 z-50 flex items-center gap-2 cursor-pointer group bg-white/40 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-black/10 md:border-transparent transition-all hover:bg-white/60 md:hover:bg-transparent"
+            className="absolute top-6 left-6 md:top-8 md:left-10 z-50 flex items-center gap-2 cursor-pointer group bg-white/70 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-black/10 md:border-transparent transition-all hover:bg-white/90 md:hover:bg-transparent"
             onClick={onClose}
           >
             <div className="w-8 h-8 rounded-full border-2 border-black/20 flex items-center justify-center

@@ -105,23 +105,23 @@ export default function ExperienceModal({ isOpen, onClose }) {
         >
           {/* ── BACKGROUND LAYER (z-0) ────────────────────────── */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img
-              src="/Home Background.png"
+            <img 
+              src="/Home Background.png" 
               alt="Background"
-              className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
+              className="absolute inset-0 w-full h-full object-cover opacity-10 md:opacity-40 mix-blend-normal md:mix-blend-screen"
               draggable={false}
             />
             {/* Floating glass triangles */}
             <motion.div 
               animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-              className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10"
+              className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10 will-change-transform"
               style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
             />
             <motion.div 
               animate={{ y: [20, -20, 20], rotate: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-              className="absolute top-[60%] left-[20%] w-48 h-48 bg-cyan-500/10"
+              className="absolute top-[60%] left-[20%] w-48 h-48 bg-cyan-500/10 will-change-transform"
               style={{ clipPath: 'polygon(0 40%, 100% 0, 80% 100%)' }}
             />
           </div>
@@ -261,7 +261,7 @@ export default function ExperienceModal({ isOpen, onClose }) {
                                         key={imgIdx}
                                         src={imgSrc}
                                         alt={`${exp.company} Documentation ${imgIdx + 1}`}
-                                        className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md"
+                                        className="w-full aspect-video object-cover rounded-sm border border-white/20 grayscale-0 md:grayscale md:hover:grayscale-0 hover:border-customCyan-400 transition-all duration-300 shadow-md"
                                         draggable={false}
                                       />
                                     ))}
@@ -285,7 +285,7 @@ export default function ExperienceModal({ isOpen, onClose }) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, type: 'spring', stiffness: 400, damping: 25 }}
-            className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
+            className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
           >
           <div
             onClick={handleClose}

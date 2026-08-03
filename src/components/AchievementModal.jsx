@@ -80,13 +80,14 @@ export default function AchievementModal({ isOpen, onClose }) {
         exit="exit"
         className="fixed inset-0 w-screen h-screen z-50 bg-[#003eb3] select-none font-oswald flex flex-col md:flex-row overflow-hidden"
       >
-        {/* ── BACKGROUND ────────────────────────────────────────── */}
-        <div className="absolute inset-0 bg-blue-900 opacity-40 mix-blend-multiply pointer-events-none z-0" />
-        <img
-          src="/Home Background.png"
-          alt="Background Texture"
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-20 mix-blend-overlay pointer-events-none"
-        />
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 bg-blue-900 opacity-40 mix-blend-normal md:mix-blend-multiply pointer-events-none z-0" />
+          <img 
+            src="/Home Background.png" 
+            alt="Achievement Background" 
+            className="absolute inset-0 w-full h-full object-cover z-0 opacity-10 md:opacity-20 mix-blend-normal md:mix-blend-overlay pointer-events-none"
+          />
+        </div>
 
         {/* ── WATERMARK TEXT (Right Edge) ───────────────────────── */}
         <div className="absolute right-[-15vh] md:right-[-10vw] top-1/2 -translate-y-1/2 -rotate-90 opacity-10 pointer-events-none z-0 hidden md:block">
@@ -198,7 +199,7 @@ export default function AchievementModal({ isOpen, onClose }) {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.15 }}
-                className="absolute bottom-20 md:bottom-28 right-4 md:right-12 w-[90%] md:w-auto md:max-w-xl bg-[#0a0a2a]/95 backdrop-blur-md p-6 md:p-8 border-l-[6px] border-cyan-400 shadow-[0_15px_30px_rgba(0,0,0,0.8)] z-20"
+                className="absolute bottom-20 md:bottom-28 right-4 md:right-12 w-[90%] md:w-auto md:max-w-xl bg-[#0a0a2a]/95 backdrop-blur-none md:backdrop-blur-md p-6 md:p-8 border-l-[6px] border-cyan-400 shadow-[0_15px_30px_rgba(0,0,0,0.8)] z-20"
                 style={{ clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0 100%)' }}
               >
                 <h3 className="text-cyan-400 font-black italic text-2xl md:text-4xl mb-3 drop-shadow-[0_0_15px_rgba(0,255,255,0.4)] leading-none">
@@ -217,7 +218,7 @@ export default function AchievementModal({ isOpen, onClose }) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 25 }}
-          className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
+          className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/40 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
         >
           <div
             onClick={handleClose}
