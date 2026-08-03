@@ -127,9 +127,9 @@ export default function ExperienceModal({ isOpen, onClose }) {
           </div>
 
           {/* ── WATERMARK TEXT ────────────────────────────────── */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex justify-end items-start">
-            <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.15)] text-[15rem] -rotate-12 translate-x-32 -translate-y-16 font-black italic font-oswald whitespace-nowrap">
-              EXPERIENCE
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex justify-end items-start opacity-40">
+            <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.2)] text-[6rem] md:text-[10rem] lg:text-[13rem] -rotate-12 font-black italic font-oswald whitespace-nowrap select-none drop-shadow-md mt-16 mr-4 md:mt-24 md:mr-16">
+              EXPERIENCES
             </span>
           </div>
 

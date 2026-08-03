@@ -77,8 +77,14 @@ export default function AboutModal({ isOpen, onClose }) {
           animate="visible"
           exit="exit"
           onClick={handleClose}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-4 gap-4"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617]/80 backdrop-blur-md overflow-hidden p-4 gap-4"
         >
+          {/* ── TEXTURE OVERLAY ────────────────────────────────────── */}
+          <div 
+            className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-40" 
+            style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '4px 4px' }}
+          ></div>
+
           {/* ── MAIN BOX ─────────────────────────────────────────── */}
           <motion.div
             variants={boxVariants}
@@ -86,7 +92,7 @@ export default function AboutModal({ isOpen, onClose }) {
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-5xl h-[85vh] md:h-[450px] relative flex flex-col md:block shadow-2xl overflow-hidden select-none"
+            className="w-full max-w-5xl h-[85vh] md:h-[450px] relative z-10 flex flex-col md:block shadow-2xl overflow-hidden select-none"
             style={{
               background: '#020b24',
             }}
@@ -210,7 +216,7 @@ export default function AboutModal({ isOpen, onClose }) {
                       variants={textLineVariants}
                       className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed tracking-wide font-oswald font-normal"
                     >
-                      Final-year Information Systems student with a strong interest in{' '}
+                      A recent Information Systems graduate with a strong focus on{' '}
                       <span className="text-customCyan-400 font-semibold">UI/UX Design</span> and{' '}
                       <span className="text-customCyan-400 font-semibold">digital product development</span>.
                     </motion.p>
@@ -267,7 +273,7 @@ export default function AboutModal({ isOpen, onClose }) {
                         3.89
                       </span>
                       <span className="font-oswald text-white/50 text-sm tracking-widest uppercase">
-                        / 4.00 Current CGPA
+                        / 4.00 CGPA
                       </span>
                     </motion.div>
 
