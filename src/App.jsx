@@ -61,7 +61,7 @@ export default function App() {
 
   return (
     <div
-      className="w-screen h-screen overflow-hidden relative bg-darkBlack-900 select-none"
+      className="w-screen h-[100dvh] overflow-hidden relative bg-darkBlack-900 select-none"
       onMouseMove={handleMouseMove}
     >
 
@@ -109,10 +109,10 @@ export default function App() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 400, damping: 24, delay: 0.5 }}
-        className="absolute top-12 left-12 z-20
+        className="absolute top-6 left-6 md:top-12 md:left-12 z-20
                    bg-slate-900/90 backdrop-blur-sm
                    border border-customCyan-500/40
-                   rounded-md px-6 py-3
+                   rounded-md px-4 py-2 md:px-6 md:py-3
                    shadow-[0_0_25px_rgba(81,238,252,0.5)]
                    hover:shadow-[0_0_35px_rgba(81,238,252,0.7)]
                    transition-shadow duration-300
@@ -128,7 +128,7 @@ export default function App() {
         variants={menuContainerVariants}
         initial="hidden"
         animate="show"
-        className="absolute bottom-12 right-12 z-20 flex flex-col items-end gap-1"
+        className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-20 flex flex-col items-end gap-1"
       >
         {menuItems.map((item, index) => (
           <motion.div
@@ -169,7 +169,7 @@ export default function App() {
 
             {/* Menu label */}
             <span
-              className="relative font-oswald font-bold italic text-5xl md:text-6xl lg:text-7xl
+              className="relative font-oswald font-bold italic text-4xl md:text-6xl lg:text-7xl
                          leading-none tracking-tight text-white
                          drop-shadow-[3px_3px_0px_rgba(0,0,0,0.5)]
                          transition-colors duration-150"
