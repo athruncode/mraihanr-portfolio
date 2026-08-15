@@ -264,7 +264,7 @@ export default function AboutModal({ isOpen, onClose }) {
                       variants={textLineVariants}
                       className="text-customCyan-400 text-sm md:text-base font-oswald font-medium tracking-widest uppercase mb-5"
                     >
-                      Bachelor of Information Systems &bull; Faculty of Computer Science
+                      Bachelor of Computer Science in Information Systems &bull; Faculty of Computer Science
                     </motion.p>
 
                     {/* GPA highlight */}

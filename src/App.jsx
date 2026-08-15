@@ -119,7 +119,7 @@ export default function App() {
                    cursor-default"
       >
         <span className="font-oswald font-bold text-white text-lg tracking-wide">
-          Bachelor of Information Systems
+          Bachelor of Computer Science in Information Systems
         </span>
       </motion.button>
 
