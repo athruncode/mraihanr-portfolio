@@ -3,29 +3,44 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const achievements = [
   {
-    id: 1, type: "ACADEMIC", title: "IN-FEST 2025 Web Dev", rank: "3RD",
+    id: 1, type: "PROFESSIONAL CERTIFICATION", title: "BNSP Multimedia Designer", rank: "CERT",
+    desc: "Certified as Desainer Multimedia Madya by the Indonesian Professional Certification Authority (BNSP), validating proficiency in national multimedia design standards.",
+    images: ["/Sertifikat BNSP.jpg"]
+  },
+  {
+    id: 2, type: "PROFESSIONAL CERTIFICATION", title: "ITS Data Analytics", rank: "CERT",
+    desc: "Earned the Information Technology Specialist (ITS) certification in Data Analytics from Pearson VUE, demonstrating capabilities in data-driven decision making.",
+    images: ["/Sertifikat ITS Data Analytics.jpg"]
+  },
+  {
+    id: 3, type: "ACADEMIC & PROFESSIONAL", title: "Skilvul UI/UX MSIB", rank: "CERT",
+    desc: "Successfully completed the Kampus Merdeka MSIB program at PT Impactbyte Teknologi Edukasi (Skilvul) with outstanding competencies in UI/UX Design and Research.",
+    images: ["/Sertifikat Skilvul MSIB.jpg"]
+  },
+  {
+    id: 4, type: "ACADEMIC", title: "IN-FEST 2025 Web Dev", rank: "3RD",
     desc: "Awarded 3rd Place in the national-level Web Development Competition for developing 'CityList', an AI-powered smart city web application.",
     images: ["/Juara 3 Infest.webp", "/Sertifikat Juara M. Raihan Ramadhani LOMBA WEB DEVELOPMENT TINGKAT NASIONAL.jpg"]
   },
   {
-    id: 2, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
+    id: 5, type: "ORGANIZATION", title: "UI/UX Staff KSM", rank: "STAFF",
+    desc: "Served as UI/UX Design Staff for KSM Multimedia UPNVJ, contributing to creative digital experiences for the 2025-2026 period.",
+    images: ["/Sertifikat Apresiasi KSM.jpg"]
+  },
+  {
+    id: 6, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
     desc: "Achieved Runner-Up (2nd Place) in a competition involving 10 teams, 55 participants, 13 universities, and 7 provinces.",
     images: ["/Sertifikat Lomba FIK FAIR Valorant 2024.png"]
   },
   {
-    id: 3, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
+    id: 7, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
     desc: "Secured 3rd Place / Marvelous tier in the IEC 2024 competition.",
     images: ["/IEC 3rd Winner.jpg", "/Sertifikat IEC 2024 - Marvelous.jpg"]
   },
   {
-    id: 4, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
+    id: 8, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
     desc: "Achieved 3rd Place at the Nouns Valorant Tournament held by Hasanuddin University.",
     images: ["/Nouns Valorant Tournament Hasanuddin University 3rd Winner.jpg", "/Sertifikat_3rd Place_Nouns Valorant Tournament Hasanuddin University 2024.png"]
-  },
-  {
-    id: 5, type: "NON-ACADEMIC", title: "TEC 2024", rank: "PTCPT",
-    desc: "Successfully participated and achieved recognition in TEC 2024.",
-    images: ["/Sertif TEC 2024_Raihan.png"]
   }
 ];
 
@@ -82,9 +97,9 @@ export default function AchievementModal({ isOpen, onClose }) {
       >
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute inset-0 bg-blue-900 opacity-40 mix-blend-normal md:mix-blend-multiply pointer-events-none z-0" />
-          <img 
-            src="/Home Background.png" 
-            alt="Achievement Background" 
+          <img
+            src="/Home Background.png"
+            alt="Achievement Background"
             className="absolute inset-0 w-full h-full object-cover z-0 opacity-10 md:opacity-20 mix-blend-normal md:mix-blend-overlay pointer-events-none"
           />
         </div>
@@ -174,8 +189,8 @@ export default function AchievementModal({ isOpen, onClose }) {
                         alt={`${selected.title} 1`}
                         onClick={() => setIsReversed(!isReversed)}
                         className={`absolute max-w-[85%] md:max-w-[65%] max-h-[85%] md:max-h-[80%] object-contain border-[6px] border-white bg-white origin-bottom-left transition-all duration-500 cursor-pointer
-                          ${isReversed 
-                            ? 'z-20 scale-105 rotate-0 translate-x-0 md:-translate-x-8 shadow-[0_25px_50px_rgba(0,0,0,0.8)]' 
+                          ${isReversed
+                            ? 'z-20 scale-105 rotate-0 translate-x-0 md:-translate-x-8 shadow-[0_25px_50px_rgba(0,0,0,0.8)]'
                             : 'z-0 scale-90 -rotate-6 -translate-x-8 md:-translate-x-12 opacity-80 shadow-[0_15px_40px_rgba(0,0,0,0.5)]'
                           }`}
                       />
@@ -184,8 +199,8 @@ export default function AchievementModal({ isOpen, onClose }) {
                         alt={`${selected.title} 2`}
                         onClick={() => setIsReversed(!isReversed)}
                         className={`absolute max-w-[85%] md:max-w-[70%] max-h-[85%] md:max-h-[85%] object-contain border-[6px] border-white bg-white origin-bottom-right transition-all duration-500 cursor-pointer
-                          ${!isReversed 
-                            ? 'z-20 scale-105 rotate-0 translate-x-0 md:translate-x-8 shadow-[0_25px_50px_rgba(0,0,0,0.8)]' 
+                          ${!isReversed
+                            ? 'z-20 scale-105 rotate-0 translate-x-0 md:translate-x-8 shadow-[0_25px_50px_rgba(0,0,0,0.8)]'
                             : 'z-0 scale-90 rotate-6 translate-x-8 md:translate-x-12 translate-y-4 md:translate-y-8 opacity-80 shadow-[0_15px_40px_rgba(0,0,0,0.5)]'
                           }`}
                       />

@@ -3,6 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   {
+    id: 5, category: "UI/UX DESIGN & RESEARCH", name: "Filancer",
+    desc: [
+      "Led the end-to-end design process, heavily emphasizing user research to solve financial tracking challenges for freelancers.",
+      "Conducted in-depth usability testing and translated insights into high-fidelity prototypes.",
+      "Read the full comprehensive UX Case Study on my Medium page."
+    ],
+    tech: "Figma, UX Research, Usability Testing",
+    link: "https://medium.com/@mraihanramadhani/designing-smart-finance-solutions-for-freelancers-filancer-case-study-0b2f85171b1f",
+    images: ["/filancer.svg"],
+    mockupType: "mobile"
+  },
+  {
     id: 1, category: "FRONT-END & UI/UX", name: "NCAGE Service Portal",
     desc: ["Led the UI/UX design and front-end development.", "Digitized manual bureaucratic workflows into a structured portal.", "Translated high-fidelity Figma designs into responsive UI using Bootstrap 5."],
     tech: "Bootstrap 5, Laravel Blade, Figma",
@@ -11,7 +23,7 @@ const projects = [
     mockupType: "desktop"
   },
   {
-    id: 2, category: "FRONT-END DEVELOPER", name: "Clinical Practice Monitoring",
+    id: 2, category: "FRONT-END & UI/UX", name: "Clinical Practice Monitoring",
     desc: ["Developed a web-based information system for the Physiotherapy Study Program.", "Supported the management, monitoring, and documentation of clinical practice activities.", "Implemented UI, supported feature validation, and ensured workflow alignment."],
     tech: "Web Development",
     link: "https://www.figma.com/design/tciaz24akTfzrUZIxSdEj8/Aplikasi-Monitoring-Perkuliahan-Fisioterapi-UPNVJ?node-id=3013-22437&t=hSLOis8QQbX9Symi-1",
@@ -20,7 +32,7 @@ const projects = [
   },
   {
     id: 3, category: "UI/UX DESIGN", name: "CityList",
-    desc: ["Designed UI/UX for an AI-powered smart city web application.", "Created the design system, landing page, and responsive mockups.", "Awarded 3rd Place in IN-FEST 2025 National Web Dev Competition."],
+    desc: ["Designed UI/UX for an Al-powered smart city web application.", "Created the design system, landing page, and responsive mockups.", "Awarded 3rd Place in IN-FEST 2025 National Web Dev Competition."],
     tech: "Figma, Design System",
     link: "https://www.figma.com/design/n8jGX5iqkAHNsEElk5KGVN/CityList?node-id=0-1&t=IviKscNmaPxscuGr-1",
     images: ["/citylist 1.svg", "/citylist 2.svg"],
@@ -32,14 +44,6 @@ const projects = [
     tech: "Figma, Interactive Prototyping",
     link: "https://www.figma.com/design/ONnS3GJv8EzEXrnh9IHSL4/UniFind?node-id=0-1&t=XOvvRxPcaYttutGA-1",
     images: ["/unifind.svg"],
-    mockupType: "mobile"
-  },
-  {
-    id: 5, category: "UI/UX DESIGN", name: "Filancer",
-    desc: ["Led the end-to-end design process from user research to high-fidelity prototyping.", "Conducted usability testing to solve financial challenges for freelancers."],
-    tech: "Figma, User Research",
-    link: "https://medium.com/@mraihanramadhani/designing-smart-finance-solutions-for-freelancers-filancer-case-study-0b2f85171b1f",
-    images: ["/filancer.svg"],
     mockupType: "mobile"
   },
   {
@@ -223,7 +227,9 @@ export default function ProjectsModal({ isOpen, onClose }) {
                     rel="noopener noreferrer"
                     className="bg-customCyan-500 text-darkBlack-900 font-bold font-oswald italic tracking-widest px-6 py-2 md:mt-2 inline-block skew-x-[-10deg] hover:bg-white hover:scale-105 transition-all drop-shadow-lg"
                   >
-                    <span className="inline-block skew-x-[10deg]">VIEW PROJECT</span>
+                    <span className="inline-block skew-x-[10deg]">
+                      {project.name === "Filancer" ? "READ UX CASE STUDY" : "VIEW PROJECT"}
+                    </span>
                   </a>
                 </div>
               </motion.div>
