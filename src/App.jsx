@@ -77,28 +77,44 @@ export default function App() {
         }}
       />
 
-      {/* ── Z-10 · HERO CHARACTER (bottom-left, parallax + dynamic shadow) ── */}
-      <motion.img
-        src="/rehan biru.svg"
-        alt="M. Raihan — Character"
-        draggable={false}
-        className="absolute bottom-0 left-4 h-[75vh] md:h-[80vh] w-auto object-contain object-bottom z-10"
+      {/* ── Z-10 · HERO CHARACTER & BADGES (bottom-left, parallax + dynamic shadow) ── */}
+      <motion.div
+        className="absolute bottom-0 -left-10 sm:-left-4 md:left-8 h-[65vh] sm:h-[75vh] md:h-[95vh] w-auto z-10 pointer-events-none select-none"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.15 }}
-        style={{
-          transform: `translate(${charX}px, ${charY}px)`,
-          transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease',
-          filter: `drop-shadow(${shadowX}px ${Math.abs(shadowY) + 15}px 25px rgba(0,0,0,0.6))`,
-        }}
-      />
+      >
+        {/* Character Image */}
+        <img
+          src="/rehan homescreen.png"
+          alt="M. Raihan — Character"
+          draggable={false}
+          className="relative h-full w-auto object-contain object-bottom pointer-events-auto"
+          style={{
+            transform: `translate(${charX}px, ${charY}px)`,
+            transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease',
+            filter: `drop-shadow(${shadowX}px ${Math.abs(shadowY) + 15}px 25px rgba(0,0,0,0.6))`,
+          }}
+        />
+
+        {/* Role Badge */}
+        <motion.img
+          src="/role-object.png"
+          alt="Role — UI/UX Designer & Aspiring Product Designer"
+          draggable={false}
+          className="absolute w-[150px] sm:w-[220px] md:w-[320px] lg:w-[400px] h-auto object-contain drop-shadow-[4px_6px_10px_rgba(0,0,0,0.45)] pointer-events-auto top-[30%] sm:top-[30%] md:top-[30%] left-[42%] sm:left-[50%] md:left-[58%]"
+          initial={{ opacity: 0, x: -24, rotate: -3 }}
+          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          transition={{ delay: 0.55, type: 'spring', stiffness: 320, damping: 26 }}
+        />
+      </motion.div>
 
       {/* ── Z-10 · LOGO TEXT (center-right) ──────────────────────── */}
       <motion.img
         src="/Portfolio rehan text.png"
         alt="Portfolio Rehan"
         draggable={false}
-        className="absolute top-16 right-[18%] w-[280px] md:w-[320px] lg:w-[360px] h-auto object-contain z-10"
+        className="absolute top-12 sm:top-16 right-3 sm:right-6 md:right-[18%] w-[160px] sm:w-[220px] md:w-[300px] lg:w-[360px] h-auto object-contain z-10 drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 300, damping: 24, delay: 0.25 }}
@@ -109,16 +125,17 @@ export default function App() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 400, damping: 24, delay: 0.5 }}
-        className="absolute top-6 left-6 md:top-12 md:left-12 z-20
+        className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-12 md:left-12 z-20
                    bg-slate-900/90 backdrop-blur-sm
                    border border-customCyan-500/40
-                   rounded-md px-4 py-2 md:px-6 md:py-3
+                   rounded-md px-3 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3
+                   max-w-[75vw] sm:max-w-none
                    shadow-[0_0_25px_rgba(81,238,252,0.5)]
                    hover:shadow-[0_0_35px_rgba(81,238,252,0.7)]
                    transition-shadow duration-300
                    cursor-default"
       >
-        <span className="font-oswald font-bold text-white text-lg tracking-wide">
+        <span className="font-oswald font-bold text-white text-xs sm:text-sm md:text-lg tracking-wide block truncate sm:whitespace-normal">
           Bachelor of Computer Science in Information Systems
         </span>
       </motion.button>
@@ -128,7 +145,7 @@ export default function App() {
         variants={menuContainerVariants}
         initial="hidden"
         animate="show"
-        className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-20 flex flex-col items-end gap-1"
+        className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-12 md:right-12 z-20 flex flex-col items-end gap-0.5 sm:gap-1"
       >
         {menuItems.map((item, index) => (
           <motion.div
@@ -137,8 +154,8 @@ export default function App() {
             className="relative cursor-pointer"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => { 
-              if (item === 'ABOUT') setAboutOpen(true); 
+            onClick={() => {
+              if (item === 'ABOUT') setAboutOpen(true);
               if (item === 'EXPERIENCES') setExperienceOpen(true);
               if (item === 'PROJECTS') setProjectsOpen(true);
               if (item === 'ACHIEVEMENTS') setAchievementOpen(true);
@@ -169,9 +186,9 @@ export default function App() {
 
             {/* Menu label */}
             <span
-              className="relative font-oswald font-bold italic text-4xl md:text-6xl lg:text-7xl
-                         leading-none tracking-tight text-white
-                         drop-shadow-[3px_3px_0px_rgba(0,0,0,0.5)]
+              className="relative font-oswald font-bold italic text-2xl sm:text-4xl md:text-6xl lg:text-7xl
+                         leading-tight sm:leading-none tracking-tight text-white
+                         drop-shadow-[2px_2px_0px_rgba(0,0,0,0.6)] md:drop-shadow-[3px_3px_0px_rgba(0,0,0,0.5)]
                          transition-colors duration-150"
               style={{
                 textShadow: hoveredIndex === index

@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/* ───────────────────────── PROJECT DATA ─────────────────────────
+   Content rewritten problem → process → outcome, using facts pulled
+   directly from each project's own documentation (Medium case study,
+   business proposal, competition submission, thesis). Nothing here
+   is invented — where a project didn't have a documented outcome
+   metric (NCAGE), the copy stays honest about what's known rather
+   than padding it with a fabricated result. ───────────────────── */
 const projects = [
   {
     id: 5, category: "UI/UX DESIGN & RESEARCH", name: "Filancer",
     desc: [
-      "Led the end-to-end design process, heavily emphasizing user research to solve financial tracking challenges for freelancers.",
-      "Conducted in-depth usability testing and translated insights into high-fidelity prototypes.",
-      "Read the full comprehensive UX Case Study on my Medium page."
+      "Freelancers struggle with irregular income, no proper system to record income/expenses, and missed bill payments — with no financial tool built around how freelance work actually works.",
+      "Led the team through the full Design Thinking process as team lead: user research, problem definition, ideation, wireframes, hi-fi UI, and interactive prototyping.",
+      "Usability testing with 5 target users (Single Ease Question scoring) surfaced navigation and visual issues, resolved across 3 rounds of iteration."
     ],
     tech: "Figma, UX Research, Usability Testing",
     link: "https://medium.com/@mraihanramadhani/designing-smart-finance-solutions-for-freelancers-filancer-case-study-0b2f85171b1f",
@@ -16,23 +23,34 @@ const projects = [
   },
   {
     id: 1, category: "FRONT-END & UI/UX", name: "NCAGE Service Portal",
-    desc: ["Led the UI/UX design and front-end development.", "Digitized manual bureaucratic workflows into a structured portal.", "Translated high-fidelity Figma designs into responsive UI using Bootstrap 5."],
+    desc: [
+      "The office's request-handling process ran entirely on manual, paper-based workflows with no structured digital record.",
+      "Led the UI/UX design and translated high-fidelity Figma designs into a responsive front-end using Bootstrap 5 and Laravel Blade."
+    ],
     tech: "Bootstrap 5, Laravel Blade, Figma",
-    link: "https://www.figma.com/design/b0MVdQkuOh0cZ75x78wYMC/Website-Pelayanan-Kode-NCAGE?node-id=0-1&t=u8moP0g77l7cuufR-1",
+    link: "https://www.figma.com/design/b0MVdQkuOh0cZ75x78wYMC/Website-PelayananKode-NCAGE?node-id=0-1&t=u8moP0g77l7cuufR-1",
     images: ["/Projects - PUSKOD 1.svg", "/Projects - PUSKOD 2.svg"],
     mockupType: "desktop"
   },
   {
     id: 2, category: "FRONT-END & UI/UX", name: "Clinical Practice Monitoring",
-    desc: ["Developed a web-based information system for the Physiotherapy Study Program.", "Supported the management, monitoring, and documentation of clinical practice activities.", "Implemented UI, supported feature validation, and ensured workflow alignment."],
-    tech: "Web Development",
+    desc: [
+      "The Physiotherapy Study Program tracked theory, practical, and clinical practice sessions with paper logbooks — slow to validate, easy to lose, and impossible to trace when issues came up.",
+      "Solo-designed and built the front-end (Next.js, TypeScript, Tailwind) using Agile Scrum: 3 user personas (student, lecturer, admin), information architecture, and a dedicated brand & semantic color system before wireframes and hi-fi screens.",
+      "Verified with 94/94 passing functional test cases and a 93.51% User Acceptance Testing score — rated \"Very Good\"."
+    ],
+    tech: "Next.js, TypeScript, Tailwind CSS, Agile Scrum",
     link: "https://www.figma.com/design/tciaz24akTfzrUZIxSdEj8/Aplikasi-Monitoring-Perkuliahan-Fisioterapi-UPNVJ?node-id=3013-22437&t=hSLOis8QQbX9Symi-1",
     images: ["/Clininal Monitoring 1.svg", "/Clininal Monitoring 2.svg"],
     mockupType: "desktop"
   },
   {
     id: 3, category: "UI/UX DESIGN", name: "CityList",
-    desc: ["Designed UI/UX for an Al-powered smart city web application.", "Created the design system, landing page, and responsive mockups.", "Awarded 3rd Place in IN-FEST 2025 National Web Dev Competition."],
+    desc: [
+      "Citizens struggle to report broken infrastructure and public issues through slow, opaque government channels — and often can't articulate a report clearly enough to get it acted on.",
+      "Designed the UI/UX as the team's sole designer (alongside 3 developers) for a full-stack app: report flow, AI-assisted description generation, and an admin dashboard — supporting UN SDG 9, 11, and 16.",
+      "Shipped as a live, deployed web app (not just a prototype) and awarded 3rd Place at IN-FEST 2025 National Web Dev Competition."
+    ],
     tech: "Figma, Design System",
     link: "https://www.figma.com/design/n8jGX5iqkAHNsEElk5KGVN/CityList?node-id=0-1&t=IviKscNmaPxscuGr-1",
     images: ["/citylist 1.svg", "/citylist 2.svg"],
@@ -40,19 +58,15 @@ const projects = [
   },
   {
     id: 4, category: "UI/UX DESIGN", name: "UniFind",
-    desc: ["Designed the visual identity and interactive prototypes.", "Created an app and IoT-based lost-and-found platform for campus environments."],
+    desc: [
+      "Lost items on campus were reported through scattered, disorganized social media posts — and commercial trackers like AirTag are too expensive and locked to one device ecosystem for a student budget.",
+      "Designed the visual identity and interactive prototypes for a companion IoT tracker (ESP32 + GPS) as part of a 10-person cross-functional team.",
+      "Validated through a campus problem-solution-fit survey and a live exhibition booth; the launch Instagram campaign reached 1,463 views in 30 days, 71.5% from non-followers."
+    ],
     tech: "Figma, Interactive Prototyping",
     link: "https://www.figma.com/design/ONnS3GJv8EzEXrnh9IHSL4/UniFind?node-id=0-1&t=XOvvRxPcaYttutGA-1",
     images: ["/unifind.svg"],
     mockupType: "mobile"
-  },
-  {
-    id: 6, category: "UI/UX DESIGN", name: "PMI Bogor Hospital",
-    desc: ["Designed the user interface for a hospital information system.", "Collaborated as part of a final team project for System Analysis course."],
-    tech: "Figma, System Analysis",
-    link: "https://www.figma.com/design/bumvCjBxDSg9l1c0uoSSXH/Project_M.-Raihan-Ramadhani?node-id=1-8543&t=50sxFQkjkA6Lc4j2-1",
-    images: ["/PMI BOGOR REDESIGN 1.svg", "/PMI BOGOR REDESIGN 2.svg"],
-    mockupType: "desktop"
   }
 ];
 
@@ -89,12 +103,10 @@ export default function ProjectsModal({ isOpen, onClose }) {
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
-
   const handleTouchEnd = (e) => {
     if (touchStartX === null) return;
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
-
     if (diff > 50) {
       handleNext(); // Swiped left -> Next
     } else if (diff < -50) {
@@ -104,6 +116,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
   };
 
   if (!isOpen) return null;
+
   const project = projects[currentIndex];
 
   return (
@@ -136,7 +149,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
           <motion.div
             animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-            className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10"
+            className="absolute top-[20%] left-[60%] w-32 h-32 bg-cyan-500/10"
             style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
           />
           <motion.div
@@ -149,12 +162,12 @@ export default function ProjectsModal({ isOpen, onClose }) {
 
         {/* ── TOP BANNER (z-20) ─────────────────────────────────── */}
         <div
-          className="absolute -top-[80px] md:-top-[150px] -left-[10vw] w-[120vw] h-[220px] md:h-[320px] bg-white -rotate-[4deg] z-20 shadow-[0_15px_35px_rgba(0,0,0,0.5)] border-b-[6px] border-[#ff0050] flex items-end justify-between pb-6 md:pb-10 px-[12vw] overflow-hidden"
+          className="absolute -top-[80px] md:-top-[150px] -left-[10vw] w-[120vw] h-[220px] md:h-[320px] bg-white -rotate-[4deg] z-20 shadow-[0_15px_35px_rgba(0,0,0,0.5)] border-b-[6px] border-[#4AD9E5] flex items-end justify-between pb-6 md:pb-10 px-[12vw] overflow-hidden"
         >
           {/* PREV Button */}
           <button
             onClick={handlePrev}
-            className="text-2xl md:text-4xl font-black italic text-transparent [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] hover:text-[#ff0050] transition-colors cursor-pointer shrink-0"
+            className="text-2xl md:text-4xl font-black italic text-transparent [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] hover:text-[#4AD9E5] transition-colors cursor-pointer shrink-0"
           >
             &lt; <span className="md:hidden">PREV</span><span className="hidden md:inline">PREVIOUS</span>
           </button>
@@ -170,7 +183,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
                 transition={{ duration: 0.2 }}
                 className="flex flex-col items-center md:items-start text-center md:text-left w-full"
               >
-                <span className="text-gray-400 font-semibold uppercase text-xs md:text-sm tracking-widest">
+                <span className="text-gray-600 font-semibold uppercase text-xs md:text-sm tracking-widest">
                   {project.category}
                 </span>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-black italic text-black leading-none whitespace-nowrap overflow-hidden text-ellipsis w-full">
@@ -183,7 +196,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
           {/* NEXT Button */}
           <button
             onClick={handleNext}
-            className="text-2xl md:text-4xl font-black italic text-transparent [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] hover:text-[#ff0050] transition-colors cursor-pointer shrink-0"
+            className="text-2xl md:text-4xl font-black italic text-transparent [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] hover:text-[#4AD9E5] transition-colors cursor-pointer shrink-0"
           >
             NEXT &gt;
           </button>
@@ -191,7 +204,6 @@ export default function ProjectsModal({ isOpen, onClose }) {
 
         {/* ── MAIN CONTENT AREA (Scrollable on mobile if needed) ── */}
         <div className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden md:overflow-hidden z-10 flex flex-col md:flex-row">
-
           {/* BOTTOM LEFT DETAILS */}
           <div className="w-full md:w-[45%] h-full flex flex-col justify-end pb-24 md:pb-32 px-8 md:pl-24 pt-[30vh] md:pt-0 z-20">
             <h2
@@ -199,7 +211,6 @@ export default function ProjectsModal({ isOpen, onClose }) {
             >
               PROJECT DETAILS
             </h2>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={project.id}
@@ -289,20 +300,20 @@ export default function ProjectsModal({ isOpen, onClose }) {
           transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 25 }}
           className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/40 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
         >
-          <div
+          <button
             onClick={handleClose}
-            className="flex items-center gap-2 md:gap-3 group cursor-pointer"
+            className="flex items-center gap-2 md:gap-3 group cursor-pointer bg-transparent border-0 p-0"
           >
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/30 flex items-center justify-center
-                            group-hover:border-[#ff0050] group-hover:bg-[#ff0050] transition-colors bg-black/40 md:bg-black/20">
-              <span className="text-white font-bold text-[10px] md:text-xs group-hover:text-white transition-colors">
+              group-hover:border-[#4AD9E5] group-hover:bg-[#4AD9E5] transition-colors bg-black/40 md:bg-black/20">
+              <span className="text-white font-bold text-[10px] md:text-xs group-hover:text-black transition-colors">
                 ESC
               </span>
             </div>
-            <span className="text-white font-bold italic tracking-widest text-sm md:text-base group-hover:text-[#ff0050] transition-colors drop-shadow-md uppercase">
+            <span className="text-white font-bold italic tracking-widest text-sm md:text-base group-hover:text-[#4AD9E5] transition-colors drop-shadow-md uppercase">
               BACK
             </span>
-          </div>
+          </button>
         </motion.div>
 
         {/* ── IMAGE LIGHTBOX OVERLAY ──────────────────────────── */}
@@ -371,7 +382,6 @@ export default function ProjectsModal({ isOpen, onClose }) {
             </motion.div>
           )}
         </AnimatePresence>
-
       </motion.div>
     </AnimatePresence>
   );
