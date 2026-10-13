@@ -86,7 +86,7 @@ export default function App() {
       >
         {/* Character Image */}
         <img
-          src="/rehan homescreen.png"
+          src="/rehan home background.png"
           alt="M. Raihan — Character"
           draggable={false}
           className="relative h-full w-auto object-contain object-bottom pointer-events-auto"
