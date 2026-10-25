@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const experiences = [
@@ -72,7 +72,7 @@ const slotVariants = {
   visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 350, damping: 25 } }
 };
 
-export default function ExperienceModal({ isOpen, onClose }) {
+function ExperienceModal({ isOpen, onClose }) {
   const [expandedId, setExpandedId] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -342,3 +342,5 @@ export default function ExperienceModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+export default memo(ExperienceModal);

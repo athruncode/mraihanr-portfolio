@@ -1,5 +1,24 @@
-import { useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ABOUT_PHOTO_SRC, ABOUT_SILHOUETTE_SRC } from './aboutAssets';
+
+/* Single responsive listener instead of reading window.innerWidth while rendering */
+function useIsMobile() {
+  const query = '(max-width: 767px)';
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia(query).matches
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = (event) => setIsMobile(event.matches);
+    setIsMobile(mql.matches);
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, []);
+
+  return isMobile;
+}
 
 /* ───────────────────────── ANIMATION VARIANTS ───────────────────────── */
 const overlayVariants = {
@@ -57,14 +76,21 @@ const pageVariants = {
 /* ═══════════════════════════════════════════════════════════════
    ABOUT MODAL — Persona 3 Reload "Shuffle Time" dialog style
    ═══════════════════════════════════════════════════════════════ */
-export default function AboutModal({ isOpen, onClose }) {
+function AboutModal({ isOpen, onClose }) {
   const [currentPage, setCurrentPage] = useState(0);
+  const isMobile = useIsMobile();
+  const resetTimer = useRef(null);
   const totalPages = 2;
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     onClose();
-    setTimeout(() => setCurrentPage(0), 300);
-  };
+    if (resetTimer.current) clearTimeout(resetTimer.current);
+    resetTimer.current = setTimeout(() => setCurrentPage(0), 300);
+  }, [onClose]);
+
+  useEffect(() => () => {
+    if (resetTimer.current) clearTimeout(resetTimer.current);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -102,13 +128,13 @@ export default function AboutModal({ isOpen, onClose }) {
             <div
               className="absolute md:absolute top-0 left-0 w-full md:w-[38%] h-[35%] md:h-full bg-customBlue-500 z-0"
               style={{
-                clipPath: window.innerWidth < 768 ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' : 'polygon(0 0, 100% 0, 82% 100%, 0 100%)',
+                clipPath: isMobile ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' : 'polygon(0 0, 100% 0, 82% 100%, 0 100%)',
               }}
             />
 
             {/* ── REHAN BIRU SILHOUETTE (behind photo frame) ─────── */}
             <motion.img
-              src="/rehan biru.svg"
+              src={ABOUT_SILHOUETTE_SRC}
               alt="Character silhouette"
               draggable={false}
               initial={{ y: 60, opacity: 0 }}
@@ -128,21 +154,25 @@ export default function AboutModal({ isOpen, onClose }) {
               <div
                 className="absolute inset-0 md:inset-0 w-[60%] md:w-full mx-auto md:mx-0 h-full"
                 style={{
-                  clipPath: window.innerWidth < 768 ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
+                  clipPath: isMobile ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
                   background: 'white',
                   padding: '3px',
                 }}
               >
                 <motion.img
-                  src="/raihan-new-about.jpg"
+                  src={ABOUT_PHOTO_SRC}
                   alt="M. Raihan Photo"
+                  width={1200}
+                  height={801}
+                  decoding="async"
+                  fetchPriority="high"
                   draggable={false}
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="w-full h-full object-cover"
                   style={{
-                    clipPath: window.innerWidth < 768 ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
+                    clipPath: isMobile ? 'polygon(4% 8%, 96% 4%, 93% 92%, 8% 97%)' : 'polygon(8% 4%, 85% 2%, 78% 97%, 3% 95%)',
                   }}
                 />
               </div>
@@ -189,10 +219,10 @@ export default function AboutModal({ isOpen, onClose }) {
             <div
               className="relative md:absolute md:right-0 mt-[35vh] md:mt-0 h-[65%] md:h-full flex flex-col justify-start md:justify-center z-20 overflow-y-auto overflow-x-hidden md:overflow-visible pb-16 md:pb-0 scrollbar-hide"
               style={{
-                width: window.innerWidth < 768 ? '100%' : '55%',
-                paddingLeft: window.innerWidth < 768 ? '20px' : '40px',
-                paddingRight: window.innerWidth < 768 ? '20px' : '48px',
-                paddingTop: window.innerWidth < 768 ? '20px' : '0px',
+                width: isMobile ? '100%' : '55%',
+                paddingLeft: isMobile ? '20px' : '40px',
+                paddingRight: isMobile ? '20px' : '48px',
+                paddingTop: isMobile ? '20px' : '0px',
               }}
             >
               <AnimatePresence mode="wait">
@@ -384,3 +414,7 @@ export default function AboutModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+/* Prevents the always-mounted modal from re-rendering with unrelated App updates */
+export default memo(AboutModal);
+

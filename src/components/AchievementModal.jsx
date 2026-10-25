@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const achievements = [
@@ -50,7 +50,7 @@ const modalVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
 
-export default function AchievementModal({ isOpen, onClose }) {
+function AchievementModal({ isOpen, onClose }) {
   const [selectedId, setSelectedId] = useState(1);
   const [isReversed, setIsReversed] = useState(false);
 
@@ -255,3 +255,5 @@ export default function AchievementModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+export default memo(AchievementModal);

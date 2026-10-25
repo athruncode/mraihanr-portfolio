@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const skills = [
@@ -16,7 +16,7 @@ const modalVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
 
-export default function SkillModal({ isOpen, onClose }) {
+function SkillModal({ isOpen, onClose }) {
   const [hoveredSkill, setHoveredSkill] = useState(1);
 
   useEffect(() => {
@@ -205,3 +205,5 @@ export default function SkillModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+export default memo(SkillModal);

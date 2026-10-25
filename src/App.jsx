@@ -1,6 +1,13 @@
-import { useState, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback, useRef } from 'react';
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  useMotionTemplate,
+} from 'framer-motion';
 import AboutModal from './components/AboutModal';
+import { preloadAboutAssets } from './components/aboutAssets';
 import ExperienceModal from './components/ExperienceModal';
 import ProjectsModal from './components/ProjectsModal';
 import AchievementModal from './components/AchievementModal';
@@ -36,43 +43,67 @@ export default function App() {
   const [skillOpen, setSkillOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
-  /* ── Mouse parallax tracking ──────────────────────────────── */
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  /* ── Mouse parallax tracking (motion values → zero React re-renders) ── */
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
   const rafRef = useRef(null);
+  const latestPointer = useRef({ x: 0, y: 0 });
 
-  const handleMouseMove = useCallback((e) => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
+  const handleMouseMove = useCallback(
+    (e) => {
       // Normalize to -1...1 from center
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      setMouse({ x, y });
-    });
-  }, []);
+      latestPointer.current = {
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      };
+      // Throttle to one update per frame — same cadence as before, but no re-render
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        pointerX.set(latestPointer.current.x);
+        pointerY.set(latestPointer.current.y);
+      });
+    },
+    [pointerX, pointerY]
+  );
+
+  const anyModalOpen =
+    aboutOpen || experienceOpen || projectsOpen || achievementOpen || skillOpen || contactOpen;
+
+  /* Stable close handlers so the memoized modals skip App re-renders */
+  const closeAbout = useCallback(() => setAboutOpen(false), []);
+  const closeExperience = useCallback(() => setExperienceOpen(false), []);
+  const closeProjects = useCallback(() => setProjectsOpen(false), []);
+  const closeAchievement = useCallback(() => setAchievementOpen(false), []);
+  const closeSkill = useCallback(() => setSkillOpen(false), []);
+  const closeContact = useCallback(() => setContactOpen(false), []);
 
   // Parallax multipliers
-  const bgX = mouse.x * -12;
-  const bgY = mouse.y * -8;
-  const charX = mouse.x * 8;
-  const charY = mouse.y * 5;
+  const bgX = useTransform(pointerX, (v) => v * -12);
+  const bgY = useTransform(pointerY, (v) => v * -8);
+  const charX = useTransform(pointerX, (v) => v * 8);
+  const charY = useTransform(pointerY, (v) => v * 5);
   // Shadow moves opposite to cursor (light source follows cursor)
-  const shadowX = mouse.x * -20;
-  const shadowY = mouse.y * -15;
+  const shadowX = useTransform(pointerX, (v) => v * -20);
+  const shadowY = useTransform(pointerY, (v) => Math.abs(v * -15) + 15);
+  const charShadow = useMotionTemplate`drop-shadow(${shadowX}px ${shadowY}px 25px rgba(0,0,0,0.6))`;
 
   return (
     <div
       className="w-screen h-[100dvh] overflow-hidden relative bg-darkBlack-900 select-none"
-      onMouseMove={handleMouseMove}
+      onMouseMove={anyModalOpen ? undefined : handleMouseMove}
     >
 
       {/* ── Z-0 · FULL-SCREEN BACKGROUND IMAGE (parallax) ────── */}
-      <img
+      <motion.img
         src="/Home Background.png"
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
         draggable={false}
+        className="absolute inset-0 w-full h-full object-cover z-0"
         style={{
-          transform: `translate(${bgX}px, ${bgY}px) scale(1.05)`,
+          x: bgX,
+          y: bgY,
+          scale: 1.05,
           transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         }}
       />
@@ -85,15 +116,16 @@ export default function App() {
         transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.15 }}
       >
         {/* Character Image */}
-        <img
+        <motion.img
           src="/rehan home background.png"
           alt="M. Raihan — Character"
           draggable={false}
           className="relative h-full w-auto object-contain object-bottom pointer-events-auto"
           style={{
-            transform: `translate(${charX}px, ${charY}px)`,
+            x: charX,
+            y: charY,
+            filter: charShadow,
             transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease',
-            filter: `drop-shadow(${shadowX}px ${Math.abs(shadowY) + 15}px 25px rgba(0,0,0,0.6))`,
           }}
         />
 
@@ -152,7 +184,10 @@ export default function App() {
             key={item}
             variants={menuItemVariants}
             className="relative cursor-pointer"
-            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseEnter={() => {
+              setHoveredIndex(index);
+              if (item === 'ABOUT') preloadAboutAssets();
+            }}
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => {
               if (item === 'ABOUT') setAboutOpen(true);
@@ -204,22 +239,22 @@ export default function App() {
 
 
       {/* ── Z-50 · ABOUT MODAL ──────────────────────────────── */}
-      <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <AboutModal isOpen={aboutOpen} onClose={closeAbout} />
 
       {/* ── Z-50 · EXPERIENCE MODAL ─────────────────────────── */}
-      <ExperienceModal isOpen={experienceOpen} onClose={() => setExperienceOpen(false)} />
+      <ExperienceModal isOpen={experienceOpen} onClose={closeExperience} />
 
       {/* ── Z-50 · PROJECTS MODAL ───────────────────────────── */}
-      <ProjectsModal isOpen={projectsOpen} onClose={() => setProjectsOpen(false)} />
+      <ProjectsModal isOpen={projectsOpen} onClose={closeProjects} />
 
       {/* ── Z-50 · ACHIEVEMENT MODAL ────────────────────────── */}
-      <AchievementModal isOpen={achievementOpen} onClose={() => setAchievementOpen(false)} />
+      <AchievementModal isOpen={achievementOpen} onClose={closeAchievement} />
 
       {/* ── Z-50 · SKILL MODAL ──────────────────────────────── */}
-      <SkillModal isOpen={skillOpen} onClose={() => setSkillOpen(false)} />
+      <SkillModal isOpen={skillOpen} onClose={closeSkill} />
 
       {/* ── Z-50 · CONTACT MODAL ────────────────────────────── */}
-      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+      <ContactModal isOpen={contactOpen} onClose={closeContact} />
     </div>
   );
 }

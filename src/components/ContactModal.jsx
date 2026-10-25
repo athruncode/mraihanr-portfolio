@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const contactInfo = [
@@ -41,7 +41,7 @@ const itemVariants = {
   visible: { opacity: 1, x: 0, rotate: 10, transition: { duration: 0.5, ease: 'easeOut' } }
 };
 
-export default function ContactModal({ isOpen, onClose }) {
+function ContactModal({ isOpen, onClose }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -226,3 +226,5 @@ export default function ContactModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+export default memo(ContactModal);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ───────────────────────── PROJECT DATA ─────────────────────────
@@ -76,7 +76,7 @@ const modalVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } }
 };
 
-export default function ProjectsModal({ isOpen, onClose }) {
+function ProjectsModal({ isOpen, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxData, setLightboxData] = useState(null);
   const [touchStartX, setTouchStartX] = useState(null);
@@ -129,7 +129,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
         exit="exit"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="fixed inset-0 w-screen h-screen z-50 bg-[#050b1a] select-none overflow-hidden font-oswald"
+        className="fixed inset-0 w-screen h-[100dvh] z-50 bg-[#050b1a] select-none overflow-hidden font-oswald"
       >
         {/* ── BACKGROUND LAYER (z-0) ───────────────────────────── */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -203,11 +203,11 @@ export default function ProjectsModal({ isOpen, onClose }) {
         </div>
 
         {/* ── MAIN CONTENT AREA (Scrollable on mobile if needed) ── */}
-        <div className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden md:overflow-hidden z-10 flex flex-col md:flex-row">
+        <div className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden z-10 flex flex-col md:flex-row">
           {/* BOTTOM LEFT DETAILS */}
-          <div className="w-full md:w-[45%] h-full flex flex-col justify-end pb-24 md:pb-32 px-8 md:pl-24 pt-[30vh] md:pt-0 z-20">
+          <div className="w-full md:w-[45%] min-h-full shrink-0 flex flex-col pb-24 md:pb-32 px-8 md:pl-10 lg:pl-24 pt-[172px] md:pt-[220px] lg:pt-[236px] z-20">
             <h2
-              className="text-customCyan-400 font-bold italic text-3xl md:text-5xl mb-4 md:mb-6 tracking-wide drop-shadow-[0_0_15px_rgba(18,105,204,0.8)]"
+              className="md:mt-auto text-customCyan-400 font-bold italic text-3xl md:text-5xl mb-4 md:mb-6 tracking-wide drop-shadow-[0_0_15px_rgba(18,105,204,0.8)]"
             >
               PROJECT DETAILS
             </h2>
@@ -248,7 +248,7 @@ export default function ProjectsModal({ isOpen, onClose }) {
           </div>
 
           {/* RIGHT SIDE VISUALS (Floating Mockups) */}
-          <div className="w-full md:w-[55%] md:absolute md:top-1/4 md:right-0 h-[40vh] md:h-[60vh] z-10 flex items-center justify-center pointer-events-none mt-8 md:mt-0 mb-32 md:mb-0">
+          <div className="w-full md:w-[55%] md:absolute md:top-1/4 md:right-0 h-[40vh] md:h-[60vh] shrink-0 z-10 flex items-center justify-center pointer-events-none mt-8 md:mt-0 mb-32 md:mb-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={project.id}
@@ -386,3 +386,5 @@ export default function ProjectsModal({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+
+export default memo(ProjectsModal);
