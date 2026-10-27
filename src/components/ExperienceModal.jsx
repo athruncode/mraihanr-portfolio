@@ -30,7 +30,7 @@ const experiences = [
   },
   {
     id: 2,
-    role: "Staff of UI/UX Division",
+    role: "UI/UX Division Staff Member & Mentor",
     company: "KSM Multimedia UPNVJ",
     date: "Feb 2025 - Jan 2026",
     type: "Organizational",
