@@ -5,7 +5,7 @@ const experiences = [
   {
     id: 0,
     role: "UI/UX Designer Intern",
-    company: "Pusat Kodifikasi Kemhan",
+    company: "Pusat Kodifikasi Kementerian Pertahanan Republik Indonesia",
     date: "Jul 2025 - Aug 2025",
     type: "Work Experience",
     details: [
@@ -17,10 +17,10 @@ const experiences = [
   },
   {
     id: 1,
-    role: "UI/UX Design Student",
-    company: "PT Impactbyte",
+    role: "UI/UX Design Student — MSIB Independent Study",
+    company: "PT Impactbyte Teknologi Edukasi (Skilvul)",
     date: "Sep 2024 - Dec 2024",
-    type: "Bootcamp Experience",
+    type: "Independent Study Experience",
     details: [
       "Conducted in-depth research to identify key pain points for freelancers.",
       "Led the end-to-end design process, from ideation to final high-fidelity design.",
@@ -106,20 +106,20 @@ function ExperienceModal({ isOpen, onClose }) {
         >
           {/* ── BACKGROUND LAYER (z-0) ────────────────────────── */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img 
-              src="/Home Background.png" 
+            <img
+              src="/Home Background.png"
               alt="Background"
               className="absolute inset-0 w-full h-full object-cover opacity-10 md:opacity-40 mix-blend-normal md:mix-blend-screen"
               draggable={false}
             />
             {/* Floating glass triangles */}
-            <motion.div 
+            <motion.div
               animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
               className="absolute top-[20%] left-[60%] w-32 h-32 bg-pink-500/10 will-change-transform"
               style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
             />
-            <motion.div 
+            <motion.div
               animate={{ y: [20, -20, 20], rotate: [0, -15, 0] }}
               transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
               className="absolute top-[60%] left-[20%] w-48 h-48 bg-cyan-500/10 will-change-transform"
@@ -289,20 +289,20 @@ function ExperienceModal({ isOpen, onClose }) {
             transition={{ delay: 0.5, type: 'spring', stiffness: 400, damping: 25 }}
             className="absolute top-6 left-6 md:top-8 md:left-10 z-50 bg-black/20 md:bg-transparent backdrop-blur-none md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full md:rounded-none border border-white/10 md:border-transparent transition-all"
           >
-          <div
-            onClick={handleClose}
-            className="flex items-center gap-2 md:gap-3 group cursor-pointer"
-          >
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/30 flex items-center justify-center
+            <div
+              onClick={handleClose}
+              className="flex items-center gap-2 md:gap-3 group cursor-pointer"
+            >
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/30 flex items-center justify-center
                             group-hover:border-[#ff0050] group-hover:bg-[#ff0050] transition-colors bg-black/40 md:bg-black/20">
-              <span className="text-white font-bold text-[10px] md:text-xs group-hover:text-white transition-colors">
-                ESC
+                <span className="text-white font-bold text-[10px] md:text-xs group-hover:text-white transition-colors">
+                  ESC
+                </span>
+              </div>
+              <span className="text-white font-bold italic tracking-widest text-sm md:text-base group-hover:text-[#ff0050] transition-colors drop-shadow-md uppercase">
+                BACK
               </span>
             </div>
-            <span className="text-white font-bold italic tracking-widest text-sm md:text-base group-hover:text-[#ff0050] transition-colors drop-shadow-md uppercase">
-              BACK
-            </span>
-          </div>
           </motion.div>
           {/* ── IMAGE LIGHTBOX OVERLAY ──────────────────────────── */}
           <AnimatePresence>
@@ -323,7 +323,7 @@ function ExperienceModal({ isOpen, onClose }) {
                   className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 />
-                
+
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedImage(null)}
