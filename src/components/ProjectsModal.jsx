@@ -24,10 +24,12 @@ const projects = [
   {
     id: 1, category: "FRONT-END & UI/UX", name: "NCAGE Service Portal",
     desc: [
-      "The office's request-handling process ran entirely on manual, paper-based workflows with no structured digital record.",
-      "Led the UI/UX design and translated high-fidelity Figma designs into a responsive front-end using Bootstrap 5 and Laravel Blade."
+      "The office's request-handling process relied on manual, paper-based workflows without a structured digital record.",
+      "Collaborated with stakeholders to understand operational requirements and translate them into user-centered digital workflows and intuitive interfaces.",
+      "Led the UI/UX design process and collaborated with developers to ensure the implementation aligned with the approved designs and user requirements.",
+      "Translated high-fidelity Figma designs into responsive web interfaces using Bootstrap 5 and Laravel Blade."
     ],
-    tech: "Bootstrap 5, Laravel Blade, Figma",
+    tech: "Figma, Bootstrap 5, Laravel Blade",
     link: "https://www.figma.com/design/b0MVdQkuOh0cZ75x78wYMC/Website-PelayananKode-NCAGE?node-id=0-1&t=u8moP0g77l7cuufR-1",
     images: ["/Projects - PUSKOD 1.svg", "/Projects - PUSKOD 2.svg"],
     mockupType: "desktop"
