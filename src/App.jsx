@@ -152,25 +152,69 @@ export default function App() {
         transition={{ type: 'spring', stiffness: 300, damping: 24, delay: 0.25 }}
       />
 
-      {/* ── Z-20 · MAJOR BADGE (top-left) ─────────────────────── */}
-      <motion.button
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 24, delay: 0.5 }}
+      {/* ── Z-20 · MAJOR BADGE + CV DOWNLOAD (top-left) ───────── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-12 md:left-12 z-20
-                   bg-slate-900/90 backdrop-blur-sm
-                   border border-customCyan-500/40
-                   rounded-md px-3 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3
-                   max-w-[75vw] sm:max-w-none
-                   shadow-[0_0_25px_rgba(81,238,252,0.5)]
-                   hover:shadow-[0_0_35px_rgba(81,238,252,0.7)]
-                   transition-shadow duration-300
-                   cursor-default"
+                   flex flex-col items-start gap-1.5 sm:gap-2 md:gap-3"
       >
-        <span className="font-oswald font-bold text-white text-xs sm:text-sm md:text-lg tracking-wide block truncate sm:whitespace-normal">
-          Bachelor of Computer Science in Information Systems
-        </span>
-      </motion.button>
+        <motion.button
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 24, delay: 0.5 }}
+          className="bg-slate-900/90 backdrop-blur-sm
+                     border border-customCyan-500/40
+                     rounded-md px-3 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3
+                     max-w-[75vw] sm:max-w-none
+                     shadow-[0_0_25px_rgba(81,238,252,0.5)]
+                     hover:shadow-[0_0_35px_rgba(81,238,252,0.7)]
+                     transition-shadow duration-300
+                     cursor-default"
+        >
+          <span className="font-oswald font-bold text-white text-xs sm:text-sm md:text-lg tracking-wide block truncate sm:whitespace-normal">
+            Bachelor of Computer Science in Information Systems
+          </span>
+        </motion.button>
+
+        {/* Download CV — filled cyan so it reads as the page's main CTA */}
+        <motion.a
+          href="/cv/M-Raihan-Ramadhani-CV-2026.pdf"
+          download="M-Raihan-Ramadhani-CV-2026.pdf"
+          aria-label="Download CV (PDF)"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 24, delay: 0.65 }}
+          className="group inline-flex items-center gap-1.5 sm:gap-2
+                     bg-customCyan-500 hover:bg-white
+                     text-darkBlack-900
+                     rounded-md px-3 py-1 sm:px-4 sm:py-2
+                     shadow-[0_0_20px_rgba(81,238,252,0.55)]
+                     hover:shadow-[0_0_32px_rgba(81,238,252,0.85)]
+                     transition-all duration-200"
+        >
+          <svg
+            className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 3v12" />
+            <path d="M7 11l5 5 5-5" />
+            <path d="M4 21h16" />
+          </svg>
+          <span className="font-oswald font-bold italic text-[10px] sm:text-xs md:text-sm tracking-widest lg:tracking-wider uppercase whitespace-nowrap">
+            Download
+            <span className="hidden lg:inline"> Curriculum Vitae (CV)</span>
+            <span className="lg:hidden"> CV</span>
+          </span>
+        </motion.a>
+      </motion.div>
 
       {/* ── Z-20 · MAIN NAVIGATION MENU (bottom-right) ─────────── */}
       <motion.nav
