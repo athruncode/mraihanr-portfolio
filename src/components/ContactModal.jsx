@@ -5,7 +5,8 @@ const contactInfo = [
   { label: "EMAIL", value: "mraihanrmdhni@gmail.com", href: "mailto:mraihanrmdhni@gmail.com", prefix: "01", iconSlug: "gmail" },
   { label: "LINKEDIN", value: "linkedin.com/in/m-raihan-ramadhani", href: "https://www.linkedin.com/in/m-raihan-ramadhani", prefix: "02", iconSlug: "linkedin" },
   { label: "WHATSAPP", value: "0813 1547 2744", href: "https://wa.me/6281315472744", prefix: "03", iconSlug: "whatsapp" },
-  { label: "INSTAGRAM", value: "@raihan.rmdhni", href: "https://www.instagram.com/raihan.rmdhni/", prefix: "04", iconSlug: "instagram" }
+  { label: "GITHUB", value: "github.com/athruncode", href: "https://github.com/athruncode", prefix: "04", iconSlug: "github" },
+  { label: "INSTAGRAM", value: "@raihan.rmdhni", href: "https://www.instagram.com/raihan.rmdhni/", prefix: "05", iconSlug: "instagram" }
 ];
 
 const modalVariants = {
@@ -125,13 +126,14 @@ function ContactModal({ isOpen, onClose }) {
             <div className="absolute left-[20vw] top-0 w-[100vw] h-full flex flex-row">
 
               {/* ── CONTENT (Left Side) ─────────────────────────────── */}
-              <div className="w-full md:w-[70%] h-full flex flex-col justify-center px-[8vw] relative z-20 mt-10 md:mt-0">
+              {/* md:pb-[140px] nudges the block up so the 5 rows clear the rotated bottom edge of the banner */}
+              <div className="w-full md:w-[70%] h-full flex flex-col justify-center px-[8vw] md:pb-[140px] relative z-20 mt-10 md:mt-0">
 
                 {/* Header Title (Rotated back to straight) */}
-                <motion.div variants={itemVariants} className="mb-4 md:mb-8 origin-left">
+                <motion.div variants={itemVariants} className="mb-4 origin-left">
                   <div className="flex items-center gap-2 md:gap-4">
                     <div className="w-3 h-16 md:w-5 md:h-24 bg-black skew-x-12 hidden md:block"></div>
-                    <h2 className="text-black text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] font-black italic leading-[0.85] tracking-tighter drop-shadow-md">
+                    <h2 className="text-black text-[4rem] md:text-[5.25rem] lg:text-[6rem] font-black italic leading-[0.85] tracking-tighter drop-shadow-md">
                       GET IN<br/>TOUCH!
                     </h2>
                   </div>
@@ -146,7 +148,7 @@ function ContactModal({ isOpen, onClose }) {
                 </motion.div>
 
                 {/* Contact Info / Stats Rows */}
-                <div className="flex flex-col gap-4 md:gap-8 ml-1 md:ml-12 relative w-full max-w-4xl">
+                <div className="flex flex-col gap-4 ml-1 md:ml-12 relative w-full max-w-[50rem]">
                   {/* Decorative Side Line */}
                   <div className="absolute -left-4 md:-left-6 top-2 bottom-2 w-1 bg-white/20 hidden md:block"></div>
 
@@ -157,9 +159,9 @@ function ContactModal({ isOpen, onClose }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       variants={itemVariants}
-                      className="group flex flex-col md:flex-row md:items-end gap-1 md:gap-6 border-b-[3px] border-black/10 pb-2 md:pb-4 origin-left cursor-pointer transition-all hover:border-[#ff0050] hover:pl-4"
+                      className="group flex flex-col md:flex-row md:items-end gap-1 md:gap-6 border-b-[3px] border-black/10 pb-2 md:pb-1.5 origin-left cursor-pointer transition-all hover:border-[#ff0050] hover:pl-4"
                     >
-                      <div className="flex items-center gap-2 md:gap-3 w-full md:w-56 shrink-0">
+                      <div className="flex items-center gap-2 md:gap-3 w-full md:w-48 shrink-0">
                         <span className="text-black font-black italic text-lg md:text-2xl opacity-40 group-hover:opacity-100 transition-opacity">{info.prefix}</span>
                         <img
                           src={info.iconSlug === "linkedin" ? "/linkedin.svg" : `https://cdn.simpleicons.org/${info.iconSlug}/ffffff`}
@@ -171,7 +173,7 @@ function ContactModal({ isOpen, onClose }) {
                         </span>
                       </div>
 
-                      <div className="flex items-baseline gap-2 flex-1 relative break-all md:break-normal mt-1 md:mt-0">
+                      <div className="flex items-baseline gap-2 flex-1 relative break-all md:break-normal mt-1 md:mt-0 md:whitespace-nowrap">
                         <span className="text-white font-black text-lg md:text-2xl lg:text-3xl italic group-hover:text-[#ff0050] transition-colors drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)]">
                           {info.value}
                         </span>
