@@ -153,6 +153,7 @@ function ExperienceModal({ isOpen, onClose }) {
                       key={exp.id}
                       variants={slotVariants}
                       onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+                      aria-expanded={isExpanded}
                       className={`
                     w-full flex flex-col relative overflow-hidden transition-all duration-300 font-oswald cursor-pointer group
                     ${isExpanded
@@ -222,14 +223,29 @@ function ExperienceModal({ isOpen, onClose }) {
                             </div>
                           </div>
 
-                          {/* Right: Date & Type */}
-                          <div className={`flex flex-col items-start md:items-end text-left md:text-right ml-10 md:ml-0 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-200 group-hover:text-white'}`}>
-                            <p className={`${isExpanded ? 'text-lg md:text-3xl drop-shadow-md' : 'text-base md:text-xl'} font-bold tracking-wider italic`}>
-                              {exp.date}
-                            </p>
-                            <p className={`text-[0.65rem] md:text-sm tracking-widest uppercase mt-0 md:mt-1 transition-colors ${isExpanded ? 'text-white/90 font-medium' : 'text-customBlue-400 group-hover:text-white/80'}`}>
-                              {exp.type}
-                            </p>
+                          {/* Right: Date, Type & Chevron */}
+                          <div className="flex items-center gap-2 md:gap-4 ml-10 md:ml-0">
+                            <div className={`flex flex-col items-start md:items-end text-left md:text-right transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-200 group-hover:text-white'}`}>
+                              <p className={`${isExpanded ? 'text-lg md:text-3xl drop-shadow-md' : 'text-base md:text-xl'} font-bold tracking-wider italic`}>
+                                {exp.date}
+                              </p>
+                              <p className={`text-[0.65rem] md:text-sm tracking-widest uppercase mt-0 md:mt-1 transition-colors ${isExpanded ? 'text-white/90 font-medium' : 'text-customBlue-400 group-hover:text-white/80'}`}>
+                                {exp.type}
+                              </p>
+                            </div>
+
+                            <motion.svg
+                              animate={{ rotate: isExpanded ? 180 : 0 }}
+                              transition={{ duration: 0.3, ease: 'easeInOut' }}
+                              className={`w-5 h-5 md:w-6 md:h-6 shrink-0 transition-colors ${isExpanded ? 'text-white' : 'text-customBlue-300 group-hover:text-white'}`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={3}
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+                            </motion.svg>
                           </div>
                         </div>
                       </div>
