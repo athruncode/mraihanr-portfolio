@@ -23,27 +23,42 @@ const achievements = [
     images: ["/Juara 3 Infest.webp", "/Sertifikat Juara M. Raihan Ramadhani LOMBA WEB DEVELOPMENT TINGKAT NASIONAL.jpg"]
   },
   {
-    id: 5, type: "ORGANIZATION", title: "UI/UX Staff KSM", rank: "STAFF",
+    id: 5, type: "ACADEMIC", title: "THE ACE 2025 UI/UX", rank: "CERT",
+    desc: "Participated as a competitor (team Chormacode) in the UI/UX Competition at THE ACE 2025, organized by the Department of Computer Engineering, Universitas Diponegoro on 31 August 2025. Certificate No. 546/UN7.A/HK/IX/2025.",
+    images: ["/Sertifikat Peserta Lomba UIUX The Ace.jpeg"]
+  },
+  {
+    id: 6, type: "ORGANIZATION", title: "UI/UX Staff KSM", rank: "STAFF",
     desc: "Served as UI/UX Design Staff for KSM Multimedia UPNVJ, contributing to creative digital experiences for the 2025-2026 period.",
     images: ["/Sertifikat Apresiasi KSM.jpg"]
   },
   {
-    id: 6, type: "LANGUAGE CERTIFICATION", title: "ELPT UPNVJ", rank: "CERT",
+    id: 7, type: "LANGUAGE CERTIFICATION", title: "ELPT UPNVJ", rank: "CERT",
     desc: "Scored 470 (Upper Intermediate) on the English Language Proficiency Test (ELPT-UPNVJ) — Prediction PBT, administered by UPA Bahasa, Universitas Pembangunan Nasional Veteran Jakarta. Test date: 3 February 2026; certificate issued 9 February 2026.",
     images: ["/sertifikasi ELPT-UPNVJ_M_Raihan_Ramadhani.jpg"]
   },
   {
-    id: 7, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
+    id: 8, type: "PROFESSIONAL CERTIFICATION", title: "IBM Job Application", rank: "CERT",
+    desc: "Completed IBM SkillsBuild — Job Application Essentials, covering resume writing, interview preparation, and professional communication skills. Issued by IBM-SkillsBuild on 2 November 2024.",
+    images: ["/IBMDesign-Job Application Essentials.jpg"]
+  },
+  {
+    id: 9, type: "PROFESSIONAL CERTIFICATION", title: "IBM Digital World", rank: "CERT",
+    desc: "Completed IBM SkillsBuild — Working in a Digital World: Professional Skills, covering digital collaboration, communication, and agile ways of working. Issued by IBM-SkillsBuild on 2 November 2024.",
+    images: ["/IBMDesign-Working in a Digital World Professional Skills.jpg"]
+  },
+  {
+    id: 10, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
     desc: "Achieved Runner-Up (2nd Place) in a competition involving 10 teams, 55 participants, 13 universities, and 7 provinces.",
     images: ["/Sertifikat Lomba FIK FAIR Valorant 2024.png"]
   },
   {
-    id: 8, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
+    id: 11, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
     desc: "Secured 3rd Place / Marvelous tier in the IEC 2024 competition.",
     images: ["/IEC 3rd Winner.jpg", "/Sertifikat IEC 2024 - Marvelous.jpg"]
   },
   {
-    id: 9, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
+    id: 12, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
     desc: "Achieved 3rd Place at the Nouns Valorant Tournament held by Hasanuddin University.",
     images: ["/Nouns Valorant Tournament Hasanuddin University 3rd Winner.jpg", "/Sertifikat_3rd Place_Nouns Valorant Tournament Hasanuddin University 2024.png"]
   }
