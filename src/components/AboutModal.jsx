@@ -298,12 +298,16 @@ function AboutModal({ isOpen, onClose }) {
                     </motion.p>
 
                     {/* GPA highlight */}
-                    <motion.div variants={textLineVariants} className="flex items-center gap-3 mb-5">
+                    <motion.div variants={textLineVariants} className="flex flex-wrap items-center gap-3 mb-5">
                       <span className="font-oswald font-bold text-customCyan-400 text-3xl md:text-4xl tracking-wide">
                         3.89
                       </span>
                       <span className="font-oswald text-white/50 text-sm tracking-widest uppercase">
                         / 4.00 CGPA
+                      </span>
+                      <span className="px-2 py-0.5 border border-customCyan-500/50 text-customCyan-400
+                                       text-[10px] md:text-xs font-oswald font-bold tracking-widest uppercase">
+                        Cum Laude
                       </span>
                     </motion.div>
 
