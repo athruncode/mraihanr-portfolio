@@ -28,17 +28,22 @@ const achievements = [
     images: ["/Sertifikat Apresiasi KSM.jpg"]
   },
   {
-    id: 6, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
+    id: 6, type: "LANGUAGE CERTIFICATION", title: "ELPT UPNVJ", rank: "CERT",
+    desc: "Scored 470 (Upper Intermediate) on the English Language Proficiency Test (ELPT-UPNVJ) — Prediction PBT, administered by UPA Bahasa, Universitas Pembangunan Nasional Veteran Jakarta. Test date: 3 February 2026; certificate issued 9 February 2026.",
+    images: ["/sertifikasi ELPT-UPNVJ_M_Raihan_Ramadhani.jpg"]
+  },
+  {
+    id: 7, type: "NON-ACADEMIC", title: "Valorant FIK FAIR", rank: "2ND",
     desc: "Achieved Runner-Up (2nd Place) in a competition involving 10 teams, 55 participants, 13 universities, and 7 provinces.",
     images: ["/Sertifikat Lomba FIK FAIR Valorant 2024.png"]
   },
   {
-    id: 7, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
+    id: 8, type: "NON-ACADEMIC", title: "IEC 2024", rank: "3RD",
     desc: "Secured 3rd Place / Marvelous tier in the IEC 2024 competition.",
     images: ["/IEC 3rd Winner.jpg", "/Sertifikat IEC 2024 - Marvelous.jpg"]
   },
   {
-    id: 8, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
+    id: 9, type: "NON-ACADEMIC", title: "Nouns Valorant Tourney", rank: "3RD",
     desc: "Achieved 3rd Place at the Nouns Valorant Tournament held by Hasanuddin University.",
     images: ["/Nouns Valorant Tournament Hasanuddin University 3rd Winner.jpg", "/Sertifikat_3rd Place_Nouns Valorant Tournament Hasanuddin University 2024.png"]
   }
